@@ -22,7 +22,7 @@
             <h3>Click on the link to discover a randomly selected GitHub repository</h3>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
             <h3><a href="random.php" target="_blank" onclick="trackOutboundLink('random.php');">RandomGit.com/random.php</a></h3>
-            <h1><a href="mailto:max840dev@live.fr">&#9993;</a></h1>
+            <h1><a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a></h1>
         </div>
         <!-- Google Analytics -->
         <script>
