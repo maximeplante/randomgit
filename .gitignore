@@ -26,7 +26,8 @@ src/config.php
 # Logs and databases #
 ######################
 *.log
-*.sql
+# setup/schema.sql needed
+#*.sql
 *.sqlite
  
 # OS generated files #
