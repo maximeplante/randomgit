@@ -2,9 +2,9 @@
 
 return array(
     'db' => array(
-        'host' => '',
-        'user' => '',
+        'host' => '127.0.0.1',
+        'user' => 'max840',
         'pass' => '',
-        'dbName' => ''
+        'dbName' => 'c9'
     )
 );
