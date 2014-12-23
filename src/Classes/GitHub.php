@@ -10,6 +10,9 @@ class GitHub
 {
     private $userAgent = 'RandomGit';
     
+    // Repositories with a number of stars below minStars are considered to be "not interesting"
+    private $minStars = 5;
+    
     function __construct()
     {
         Requests::register_autoloader();
@@ -22,9 +25,15 @@ class GitHub
         return $randomRepoList[$randomIndex];
     }
     
-    public function getRandomRepoList()
+    public function getRandomRepoList($interestingOnly)
     {
-        return GitHub::searchRepo(Helper::randomAlphaNumString(2));
+        $query = Helper::randomAlphaNumString(2);
+        // When interestingOnly = true, only search for random repositories with more stars than minStars (reduces the number of uninteresting repositories)
+        if ($interestingOnly) {
+            $query .= ' stars:>=' . $this->minStars;
+        }
+        echo $query;
+        return GitHub::searchRepo($query);
     }
     
     // Returns an array of repositories matching the search query

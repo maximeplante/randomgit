@@ -16,7 +16,7 @@ $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config
 
 try {
     while (true) {
-        $randomRepoList = $github->getRandomRepoList();
+        $randomRepoList = $github->getRandomRepoList(true);
         
         if ($repoCache->count() > 1000) {
             $repoCache->clear();
