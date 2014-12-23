@@ -13,7 +13,7 @@ All you need is in the `setup` folder
 * Install a HTTP server with PHP and MySQL
 * Create a database and execute `schema.sql`
 * Fill `config.php` with the database credentials and move it to `src/config.php`
-* Set a cron job to execute `src/Scripts/updateRepo.php` each 5 minutes (example : `*/5 * * * * php /path/to/source/Scripts/updateRepo.php`)
+* Set a cron job to execute `src/Scripts/updateRepo.php` every 5 minutes
 * `src/html` is the public folder
 
 #### ToDo
