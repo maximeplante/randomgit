@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RandomGit.com - Discover randomly selected GitHub repositories</title>
+        <title>RandomGit.com - Discover new GitHub repositories</title>
+        
+        <meta name="description" content="Discover randomly selected GitHub repositories">
         
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script>
             var trackOutboundLink = function(url) {
