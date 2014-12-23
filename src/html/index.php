@@ -22,7 +22,7 @@
     <body>
         <div id="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3>Discovery new GitHub repositories!</h3>
+            <h3>Discover new GitHub repositories!</h3>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
             <h3><a href="random.php" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
             <h1><a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a></h1>
