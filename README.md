@@ -16,7 +16,7 @@ All you need is in the `setup` folder
 * Set a cron job to execute `src/Scripts/updateRepo.php` every 5 minutes
 * `src/html` is the public folder
 
-#### ToDo
+### ToDo
 * Add more comments to the code
 * Beautify index.php
 * Support repository filtering (programming language, number of stars/forks, ...)
