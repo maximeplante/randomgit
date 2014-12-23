@@ -4,13 +4,13 @@ RandomGit.com
 [RandomGit.com](http://randomgit.com) - A website to discover new GitHub repositories
 
 ## How to contribute
-I need you help to make a better RandomGit.com!
+I need your help to make a better RandomGit.com!
 
 ### Setup
 All you need is in the `setup` folder
 
 #### Step by Step
-* Install an HTTP server with PHP and MySQL
+* Install a HTTP server with PHP and MySQL
 * Create a database and execute `schema.sql`
 * Fill `config.php` with the database credentials and move it to `src/config.php`
 * `src/html` is the public folder
