@@ -32,7 +32,6 @@ class GitHub
         if ($interestingOnly) {
             $query .= ' stars:>=' . $this->minStars;
         }
-        echo $query;
         return GitHub::searchRepo($query);
     }
     
