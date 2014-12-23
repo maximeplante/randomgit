@@ -30,3 +30,12 @@ a {
 .smallText {
     font-size: 0.7em;
 }
+
+.button {
+    background-color: #0088FF;
+    color: #FFFFFF;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
