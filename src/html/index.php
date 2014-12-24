@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RandomGit.com - Discover new GitHub repositories</title>
+        <title>RandomGit.com - Discover GitHub repositories</title>
         
-        <meta name="description" content="Discover randomly selected GitHub repositories">
+        <meta name="description" content="Click on the button to be redirected to a randomly selected GitHub repository">
         
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
     <body>
         <div id="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3>Discover new GitHub repositories!</h3>
+            <h3>Click on the button to be redirected to a randomly selected GitHub repository</h3>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
             <h3><a href="random.php" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
             <h1><a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a></h1>
