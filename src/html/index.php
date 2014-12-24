@@ -27,7 +27,7 @@
             <h3>Click on the button to be redirected to a randomly selected GitHub repository</h3>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
             <h3><a href="random.php" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
-            <h1><a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a></h1>
+            <a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a>
         </div>
         <!-- Google Analytics -->
         <script>
