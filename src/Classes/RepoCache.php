@@ -34,8 +34,9 @@ class RepoCache
     
     public function randomRepo()
     {
-        $query = $this->prepareStatement('SELECT * FROM repo_list ORDER BY RAND() LIMIT 0, 1');
-        if (!$query->execute()) {
+        $randomRank = mt_rand(1, $this->count());
+        $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
+        if (!$query->execute(array($randomRank))) {
             throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
         }
         if (!$repoAssocArray = $query->fetch()) {
