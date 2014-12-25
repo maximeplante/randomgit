@@ -18,10 +18,6 @@ try {
     while (true) {
         $randomRepoList = $github->getRandomRepoList(true);
         
-        if ($repoCache->count() > 1000) {
-            $repoCache->clear();
-        }
-        
         foreach ($randomRepoList as $repo) {
             if (!$repoCache->isCached($repo)) {
                 $repoCache->storeRepo($repo);
@@ -29,6 +25,12 @@ try {
         }
     }
 } catch (GitHubAPIRateLimitException $e) {
+    // Randomly removes repositories from the cache to keep their count under 100000
+    $repoOverflowCount = $repoCache->count() - 100000;
+    if ($repoOverflowCount > 0) {
+        $repoCache->randomRemove($repoOverflowCount);
+    }
+    // Assigns a rank to every repository (used in RepoCache::randomRepo())
     $repoCache->giveRanks();
     exit('Success');
 }

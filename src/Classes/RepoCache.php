@@ -61,6 +61,16 @@ class RepoCache
         }
     }
     
+    // Removes randomly $count repos from the RepoCache
+    public function randomRemove($count)
+    {
+        // Parameters can't be used with LIMIT because they are considered as text, using intval() as a filter for $count
+        $query = $this->prepareStatement('DELETE FROM repo_list ORDER BY RAND() LIMIT ' . intval($count));
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to remove random repos from repo_list.');
+        }
+    }
+    
     public function isCached(Repo $repo)
     {
         $query = $this->prepareStatement('SELECT * FROM repo_list WHERE id=?');
