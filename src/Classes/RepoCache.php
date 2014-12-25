@@ -85,11 +85,14 @@ class RepoCache
     
     public function count()
     {
-        $query = $this->prepareStatement('SELECT * FROM repo_list');
+        $query = $this->prepareStatement('SELECT COUNT(*) AS total FROM repo_list');
         if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to select every element from repo_list.');
+            throw new DatabaseQueryException('Failed to count the number of entries in repo_list.');
         }
-        return $query->rowCount();
+        if (!$result = $query->fetch()) {
+            throw new DatabaseQueryException('Failed fetch the number of entries in repo_list.');
+        }
+        return $result['total'];
     }
     
     public function giveRanks()
