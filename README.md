@@ -26,7 +26,7 @@ All you need is in the `setup` folder
 Each 5 minutes, `updateRepo.php` generates a random alphanumeric string of 2 characters. Then it uses the GitHub Search API to find repositories by using the random string as the query and it stores them in a database. Then, when a user visits `random.php`, the script redirects the user to a random repository in the database. When the database becomes really big, `updateRepo.php` empties it.
 
 ## Questions
-I you have any question, create an issue with the `question` tag. Having a question should not be a wall to contribution.
+I you have any question, create an issue with the `question` tag.
 
 ## License
 Read `LICENSE`
