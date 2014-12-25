@@ -16,5 +16,3 @@ try {
     echo 'Something wrong happened';
     throw $e;
 }
-
-header('location: ' . $randomRepo->getUrl());

@@ -34,8 +34,9 @@ class RepoCache
     
     public function randomRepo()
     {
-        $query = $this->prepareStatement('SELECT * FROM repo_list ORDER BY RAND() LIMIT 0, 1');
-        if (!$query->execute()) {
+        $randomRank = mt_rand(1, $this->count());
+        $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
+        if (!$query->execute(array($randomRank))) {
             throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
         }
         if (!$repoAssocArray = $query->fetch()) {
@@ -60,6 +61,16 @@ class RepoCache
         }
     }
     
+    // Removes randomly $count repos from the RepoCache
+    public function randomRemove($count)
+    {
+        // Parameters can't be used with LIMIT because they are considered as text, using intval() as a filter for $count
+        $query = $this->prepareStatement('DELETE FROM repo_list ORDER BY RAND() LIMIT ' . intval($count));
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to remove random repos from repo_list.');
+        }
+    }
+    
     public function isCached(Repo $repo)
     {
         $query = $this->prepareStatement('SELECT * FROM repo_list WHERE id=?');
@@ -74,11 +85,22 @@ class RepoCache
     
     public function count()
     {
-        $query = $this->prepareStatement('SELECT * FROM repo_list');
+        $query = $this->prepareStatement('SELECT COUNT(*) AS total FROM repo_list');
         if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to select every element from repo_list.');
+            throw new DatabaseQueryException('Failed to count the number of entries in repo_list.');
         }
-        return $query->rowCount();
+        if (!$result = $query->fetch()) {
+            throw new DatabaseQueryException('Failed fetch the number of entries in repo_list.');
+        }
+        return $result['total'];
+    }
+    
+    public function giveRanks()
+    {
+        $query = $this->prepareStatement('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);');
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to set a rank to the element of repo_list.');
+        }
     }
     
     private function prepareStatement($stmt)
