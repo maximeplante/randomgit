@@ -81,6 +81,14 @@ class RepoCache
         return $query->rowCount();
     }
     
+    public function giveRanks()
+    {
+        $query = $this->prepareStatement('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);');
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to set a rank to the element of repo_list.');
+        }
+    }
+    
     private function prepareStatement($stmt)
     {
         if ($this->cachedPreparedStatement !== null && $stmt == $this->cachedPreparedStatement->queryString) {
