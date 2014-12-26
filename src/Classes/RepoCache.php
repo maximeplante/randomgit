@@ -8,6 +8,9 @@ class DatabaseQueryException extends DatabaseException { }
 
 class RepoCache
 {
+    // Maximum number of repositories in the cache
+    const MAX_REPOCACHE_SIZE = 100000;
+    
     private $host;
     private $user;
     private $pass;

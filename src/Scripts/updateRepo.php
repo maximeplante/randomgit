@@ -28,10 +28,10 @@ try {
         }
     }
 } catch (GitHubAPIRateLimitException $e) {
-    // Randomly removes repositories from the cache to keep their count under 100000
-    $repoOverflowCount = $repoCache->count() - 100000;
+    // Randomly removes repositories from the cache to keep their count under RepoCache::MAX_REPOCACHE_SIZE
+    $repoOverflowCount = $repoCache->count() - RepoCache::MAX_REPOCACHE_SIZE;
     if ($repoOverflowCount > 0) {
-        $repoCache->randomRemove($repoOverflowCount);
+        $repoCache->randomRemove($repoOverflowCount + ceil(RepoCache::MAX_REPOCACHE_SIZE / 4));
     }
     // Assigns a rank to every repository (used in RepoCache::randomRepo())
     $repoCache->giveRanks();
