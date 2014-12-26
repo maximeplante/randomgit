@@ -14,6 +14,9 @@ $github = new GitHub();
 
 $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 
+// Locks the database to prevent random.php from accessing the repository cache while the ranks are not assigned yet
+$repoCache->lock();
+
 try {
     while (true) {
         $randomRepoList = $github->getRandomRepoList(true);

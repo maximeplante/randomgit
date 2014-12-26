@@ -103,6 +103,15 @@ class RepoCache
         }
     }
     
+    // Locks repo_list until this RepoCache instance is destroyed
+    public function lock()
+    {
+        $query = $this->prepareStatement("LOCK TABLES repo_list WRITE;");
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to lock repo_list.');
+        }
+    }
+    
     private function prepareStatement($stmt)
     {
         if ($this->cachedPreparedStatement !== null && $stmt == $this->cachedPreparedStatement->queryString) {
