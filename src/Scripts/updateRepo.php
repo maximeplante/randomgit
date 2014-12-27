@@ -7,7 +7,7 @@ include(dirname(__FILE__) . '/../Classes/GitHub.php');
 include(dirname(__FILE__) . '/../Classes/RepoCache.php');
 $config = include(dirname(__FILE__) . '/../config.php');
 
-ini_set('display_errors', 'Off');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 
 $github = new GitHub();
