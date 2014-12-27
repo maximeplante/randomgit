@@ -106,6 +106,22 @@ class RepoCache
         }
     }
     
+    // Returns the list string[] of every single programming language used in the repositories of the cache
+    public function langList()
+    {
+        $query = $this->prepareStatement('SELECT DISTINCT lang FROM repo_list ORDER BY lang;');
+        if (!$query->execute()) {
+            throw new DatabaseQueryException('Failed to find every programming language in repo_list.');
+        }
+        
+        $langList = array();
+        while ($result = $query->fetch()) {
+            array_push($langList, $result['lang']);
+        }
+        
+        return $langList;
+    }
+    
     // Locks repo_list until this RepoCache instance is destroyed
     public function lock()
     {
