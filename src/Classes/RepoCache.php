@@ -122,12 +122,14 @@ class RepoCache
         }
     }
     
-    // Returns the list string[] of every single programming language used in the repositories of the cache
-    // Do not count repositories without any language set
-    public function langList()
+    /* Returns the list string[] of every single programming language used in the repositories of the cache
+     * Do not count repositories without any language set.
+     * It removes every language with less than $minOccurences repositories using it as their main programming language (default value = 0)
+     */
+    public function langList($minOccurences = 0)
     {
-        $query = $this->prepareStatement('SELECT DISTINCT lang FROM repo_list ORDER BY lang;');
-        if (!$query->execute()) {
+        $query = $this->prepareStatement('SELECT lang FROM repo_list GROUP BY lang HAVING COUNT(lang) >= ?;');
+        if (!$query->execute(array($minOccurences))) {
             throw new DatabaseQueryException('Failed to find every programming language in repo_list.');
         }
         
