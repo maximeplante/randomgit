@@ -107,6 +107,7 @@ class RepoCache
     }
     
     // Returns the list string[] of every single programming language used in the repositories of the cache
+    // Do not count repositories without any language set
     public function langList()
     {
         $query = $this->prepareStatement('SELECT DISTINCT lang FROM repo_list ORDER BY lang;');
@@ -117,6 +118,14 @@ class RepoCache
         $langList = array();
         while ($result = $query->fetch()) {
             array_push($langList, $result['lang']);
+        }
+        
+        /* If there's at least one repository without any language defined,
+         * the first element of the array will be null.
+         * Removing the null element from the list.
+         */
+        if ($langList[0] === null) {
+            array_shift($langList);
         }
         
         return $langList;
