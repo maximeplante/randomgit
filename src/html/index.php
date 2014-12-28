@@ -1,3 +1,17 @@
+<?php
+include(dirname(__FILE__) . '/../Classes/Repo.php');
+include(dirname(__FILE__) . '/../Classes/RepoCache.php');
+$config = include(dirname(__FILE__) . '/../config.php');
+
+ini_set('display_errors', 'Off');
+error_reporting(E_ALL | E_STRICT);
+
+$repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
+
+// For the language filter
+$langList = $repoCache->langList();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!-- Google Analytics (for events) -->
         <script>
             if (document.location.hostname.search("randomgit.com") !== -1) {
                 var trackOutboundLink = function(url) {
@@ -25,10 +40,19 @@
         <div id="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
             <h3>Click on the button to be redirected to a randomly selected GitHub repository</h3>
+            <select id="langSelect">
+            <option value="0">Language filter...</option>
+            <?php foreach ($langList as $lang) { ?>
+                <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
+            <?php } ?>
+            </select>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
-            <h3><a href="random.php" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
+            <h3><a href="random.php" id="randBtn" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
             <a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a>
         </div>
+        
+        <script type="text/javascript" src="js/script.js"></script>
+        
         <!-- Google Analytics -->
         <script>
             // Prevents Google Analytics from counting the visits when the website is on a development server
