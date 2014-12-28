@@ -35,15 +35,31 @@ class RepoCache
         }
     }
     
-    public function randomRepo()
+    /* Returns a random repository.
+     * If $language (string) is specified, it will only return repositories having this language as main programming language¸
+     */
+    public function randomRepo($language = null)
     {
-        $randomRank = mt_rand(1, $this->count());
-        $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
-        if (!$query->execute(array($randomRank))) {
-            throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
+        // If no language specified, use the optimized randomization
+        if ($language === null) {
+            $randomRank = mt_rand(1, $this->count());
+            
+            $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
+            if (!$query->execute(array($randomRank))) {
+                throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
+            }
+        // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
+        } else {
+            
+            $query = $this->prepareStatement('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1');
+            if (!$query->execute(array($language))) {
+                throw new DatabaseQueryException('Unable to get a random repository from the cache using a language filter.', 0);
+            }
+            
         }
+        
         if (!$repoAssocArray = $query->fetch()) {
-            throw new DatabaseQueryException('Failed to fetch the repository data', 0);
+            throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
         }
         return new Repo($repoAssocArray['id'], $repoAssocArray['url'], $repoAssocArray['lang']);
     }
