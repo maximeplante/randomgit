@@ -11,15 +11,16 @@ All you need is in the `setup` folder
 
 #### Step by Step
 * Install a HTTP server with PHP and MySQL
-* Create a database and execute `schema.sql`
+* Create a database and import `schema.sql`
 * Fill `config.php` with the database credentials and move it to `src/config.php`
 * Set a cron job to execute `src/Scripts/updateRepo.php` every 5 minutes
 * `src/html` is the public folder
 
 ### ToDo
 * Add more comments to the code
+* Optimize database transactions in `src/Classes/RepoCache.php`
 * Beautify index.php
-* Support repository filtering (programming language, number of stars/forks, ...)
+* Support repository filtering (number of stars/forks, ...)
 * Your idea!
 
 ## How does is work?
@@ -29,4 +30,4 @@ Each 5 minutes, `updateRepo.php` generates a random alphanumeric string of 2 cha
 I you have any question, create an issue with the `question` tag.
 
 ## License
-Read `LICENSE`
+See `LICENSE`
