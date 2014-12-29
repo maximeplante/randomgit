@@ -12,11 +12,6 @@ class RepoCache
     // Maximum number of repositories in the cache
     const MAX_REPOCACHE_SIZE = 100000;
     
-    private $host;
-    private $user;
-    private $pass;
-    private $dbName;
-    
     private $db;
     
     // Contains the last PDOStatement used (see RepoCache::prepareStatement())
@@ -24,14 +19,9 @@ class RepoCache
     
     function __construct($host, $user, $pass, $dbName)
     {
-        $this->host = $host;
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->dbName = $dbName;
-        
         try {
-            $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbName;
-            $this->db = new PDO($dsn, $this->user, $this->pass);
+            $dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
+            $this->db = new PDO($dsn, $user, $pass);
         } catch (PDOException $e) {
             throw new DatabaseConnectionException($e->getMessage() . ':' . $e->getCode(), 0);
         }
