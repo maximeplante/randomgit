@@ -20,7 +20,7 @@ $langList = $repoCache->langList(25);
     <head>
         <title>RandomGit.com - Discover GitHub repositories</title>
         
-        <meta name="description" content="Click on the button to be redirected to a randomly selected GitHub repository. You can now filter by programming language!">
+        <meta name="description" content="Explore random GitHub repositories">
         
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@ $langList = $repoCache->langList(25);
     <body>
         <div id="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3>Click on the button to be redirected to a randomly selected GitHub repository</h3>
+            <h3>Explore random GitHub repositories by clicking on the blue button!</h3>
             <select id="langSelect">
             <option value="0">Language filter...</option>
             <?php foreach ($langList as $lang) { ?>
