@@ -17,7 +17,6 @@ All you need is in the `setup` folder
 * `src/html` is the public folder
 
 ### ToDo
-* Add more comments to the code
 * Optimize database transactions in `src/Classes/RepoCache.php`
 * Beautify index.php
 * Repository filtering (number of stars/forks, ...)
