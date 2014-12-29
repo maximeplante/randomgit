@@ -20,7 +20,7 @@ $langList = $repoCache->langList(25);
     <head>
         <title>RandomGit.com - Discover GitHub repositories</title>
         
-        <meta name="description" content="Click on the button to be redirected to a randomly selected GitHub repository">
+        <meta name="description" content="Click on the button to be redirected to a randomly selected GitHub repository. You can now filter by programming language!">
         
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
