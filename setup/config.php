@@ -7,5 +7,7 @@ return array(
         'user' => '',
         'pass' => '',
         'dbName' => ''
-    )
+    ),
+    // Tells if the website is in debug mode
+    'debug' => true
 );
