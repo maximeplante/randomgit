@@ -18,10 +18,12 @@ $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config
 $repoCache->lock();
 
 try {
+    // Fetching new GitHub repositories until it reaches the rate limit of the GitHub API
     while (true) {
         $randomRepoList = $github->getRandomRepoList(true);
         
         foreach ($randomRepoList as $repo) {
+            // Do not add duplicates
             if (!$repoCache->isCached($repo)) {
                 $repoCache->storeRepo($repo);
             }
