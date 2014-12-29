@@ -1,5 +1,4 @@
 <?php
-
 include(dirname(__FILE__) . '/../Classes/Repo.php');
 include(dirname(__FILE__) . '/../Classes/RepoCache.php');
 $config = include(dirname(__FILE__) . '/../config.php');
@@ -21,7 +20,10 @@ try {
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
     
     $randomRepo = $repoCache->randomRepo($language);
+    
+    // Redirecting the user to the random repository
     header('location: ' . $randomRepo->getUrl());
+    
 } catch (Exception $e) {
     echo 'Something wrong happened';
     throw $e;

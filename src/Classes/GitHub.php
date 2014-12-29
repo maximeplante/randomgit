@@ -8,6 +8,7 @@ class GitHubAPIRateLimitException extends GitHubAPIException { }
 
 class GitHub
 {
+    // The GitHub API requires a user-agent
     private $userAgent = 'RandomGit';
     
     // Repositories with a number of stars below minStars are considered to be "not interesting"
@@ -17,6 +18,7 @@ class GitHub
     {
         Requests::register_autoloader();
     }
+    
     public function getRandomRepo()
     {
         $randomRepoList = GitHub::getRandomRepoList();
@@ -25,7 +27,11 @@ class GitHub
         return $randomRepoList[$randomIndex];
     }
     
-    public function getRandomRepoList($interestingOnly)
+    /* If $interestingOnly is set to true, every repository with a number of
+     * stars less than $minStars will be omitted.
+     * The default value of $interestingOnly is false.
+     */
+    public function getRandomRepoList($interestingOnly = false)
     {
         $query = Helper::randomAlphaNumString(2);
         // When interestingOnly = true, only search for random repositories with more stars than minStars (reduces the number of uninteresting repositories)

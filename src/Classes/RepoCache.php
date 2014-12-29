@@ -6,6 +6,7 @@ class DatabaseConnectionException extends DatabaseException { }
 
 class DatabaseQueryException extends DatabaseException { }
 
+// The repository cache is stored in the table 'repo_list' (see setup/schema.sql)
 class RepoCache
 {
     // Maximum number of repositories in the cache
@@ -18,6 +19,7 @@ class RepoCache
     
     private $db;
     
+    // Contains the last PDOStatement used (see RepoCache::prepareStatement())
     private $cachedPreparedStatement = null;
     
     function __construct($host, $user, $pass, $dbName)
@@ -72,6 +74,7 @@ class RepoCache
         }
     }
     
+    // Empties the respository cache
     public function clear()
     {
         $query = $this->prepareStatement('TRUNCATE TABLE repo_list');
@@ -90,6 +93,7 @@ class RepoCache
         }
     }
     
+    // Checks if a repository is already in the cache
     public function isCached(Repo $repo)
     {
         $query = $this->prepareStatement('SELECT * FROM repo_list WHERE id=?');
@@ -102,6 +106,7 @@ class RepoCache
         return false;
     }
     
+    // Returns the number of repositories in the cache
     public function count()
     {
         $query = $this->prepareStatement('SELECT COUNT(*) AS total FROM repo_list');
@@ -114,6 +119,9 @@ class RepoCache
         return $result['total'];
     }
     
+    /* Give a rank number (continuous) to every repository in the cache.
+     * This rank is used in RepoCache::randomRepo() to optimize the randomization.
+     */
     public function giveRanks()
     {
         $query = $this->prepareStatement('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);');
@@ -149,7 +157,7 @@ class RepoCache
         return $langList;
     }
     
-    // Locks repo_list until this RepoCache instance is destroyed
+    // Locks repo_list (read/write) until this RepoCache instance is destroyed
     public function lock()
     {
         $query = $this->prepareStatement("LOCK TABLES repo_list WRITE;");
@@ -158,6 +166,9 @@ class RepoCache
         }
     }
     
+    /* If the query string is the same as the last one, it uses the same PDOStatement instance.
+     * It's more efficient than resending the same query string.
+     */
     private function prepareStatement($stmt)
     {
         if ($this->cachedPreparedStatement !== null && $stmt == $this->cachedPreparedStatement->queryString) {
