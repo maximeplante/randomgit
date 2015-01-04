@@ -63,7 +63,7 @@ class GitHub
         $repoList = array();
         
         foreach ($rawRepoList->items as $rawRepo) {
-            $repo = new Repo($rawRepo->id, $rawRepo->html_url, $rawRepo->language);
+            $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->owner->login, $rawRepo->language);
             array_push($repoList, $repo);
         }
         
