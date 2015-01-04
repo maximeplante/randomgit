@@ -9,7 +9,7 @@ class GitHubAPIRateLimitException extends GitHubAPIException { }
 class GitHub
 {
     // The GitHub API requires a user-agent
-    private $userAgent = 'RandomGit';
+    private $userAgent = 'RandomGit/1.0 (maxime_dev@outlook.com)';
     
     // Repositories with a number of stars below minStars are considered to be "not interesting"
     private $minStars = 5;
