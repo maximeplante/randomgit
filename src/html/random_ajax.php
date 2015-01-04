@@ -21,10 +21,19 @@ try {
     
     $randomRepo = $repoCache->randomRepo($language);
     
-    // Redirecting the user to the random repository
-    header('location: ' . $randomRepo->getUrl());
+    $repoData = array(
+        'repo' => array(
+            'name' => $randomRepo->getName(),
+            'user' => $randomRepo->getUser(),
+            'url' => $randomRepo->getUrl()
+            )
+    );
+    
+    http_response_code(200);
+    
+    echo json_encode($repoData);
     
 } catch (Exception $e) {
-    echo 'Something wrong happened';
+    http_response_code(500);
     throw $e;
 }
