@@ -15,7 +15,6 @@ All you need is in the `setup` folder
 * Fill `config.php` with the database credentials and move it to `src/config.php`
 * Set a cron job to execute `src/Scripts/updateRepo.php` every 5 minutes
 * `src/html` is the public folder
-* `src/api` is the public folder of `http://api.randomgit.com/`
 
 ### ToDo
 * Optimize database transactions in `src/Classes/RepoCache.php`
