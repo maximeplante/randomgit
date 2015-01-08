@@ -9,5 +9,15 @@ return array(
         'dbName' => ''
     ),
     // Tells if the website is in debug mode
-    'debug' => true
+    'debug' => true,
+    /* You need to register an application at
+     * https://github.com/settings/applications/new
+     * to get an OAuth client id and secret.
+     */
+    'githubAPI' => array(
+        'OAuth' => array(
+            'id' => '',
+            'secret' => ''
+        )
+    )
 );
