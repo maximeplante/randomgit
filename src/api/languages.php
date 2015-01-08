@@ -3,37 +3,27 @@ include(dirname(__FILE__) . '/../Classes/Repo.php');
 include(dirname(__FILE__) . '/../Classes/RepoCache.php');
 $config = include(dirname(__FILE__) . '/../config.php');
 
-if ($config['debug']){
+if ($config['debug']) {
     ini_set('display_errors', 'On');
 } else {
     ini_set('display_errors', 'Off');
 }
 error_reporting(E_ALL | E_STRICT);
 
-$language = null;
-// Checking if a language filter is specified
-if (isset($_GET['lang'])) {
-    $language = $_GET['lang'];
-}
-
 try {
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
     
-    $randomRepo = $repoCache->randomRepo($language);
-    
-    $repoData = array(
-        'repo' => array(
-            'name' => $randomRepo->getName(),
-            'user' => $randomRepo->getUser(),
-            'url' => $randomRepo->getUrl()
-        )
-    );
+    /* For the language filter.
+     * Removes every programming language with less than 25 repositories using it as their main language
+     * to prevent random.php from always returning the same repositories.
+     */
+    $langList = $repoCache->langList(25);
     
     http_response_code(200);
     
     header('Content-Type: application/json');
     
-    echo json_encode($repoData);
+    echo json_encode($langList);
     
 } catch (Exception $e) {
     http_response_code(500);
