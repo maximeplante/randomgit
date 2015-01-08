@@ -7,7 +7,7 @@ include(dirname(__FILE__) . '/../Classes/GitHub.php');
 include(dirname(__FILE__) . '/../Classes/RepoCache.php');
 $config = include(dirname(__FILE__) . '/../config.php');
 
-if ($config['debug']){
+if ($config['debug']) {
     ini_set('display_errors', 'On');
 } else {
     ini_set('display_errors', 'Off');
