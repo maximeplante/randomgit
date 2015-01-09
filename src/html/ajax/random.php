@@ -25,7 +25,9 @@ try {
         'repo' => array(
             'name' => $randomRepo->getName(),
             'user' => $randomRepo->getUser(),
-            'url' => $randomRepo->getUrl()
+            'url' => $randomRepo->getUrl(),
+            'lang' => $randomRepo->getLang(),
+            'readme_html' => $randomRepo->getReadmeHTML()
         )
     );
     
