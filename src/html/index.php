@@ -29,6 +29,8 @@ $langList = $repoCache->langList(25);
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
+        
+        <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!-- Google Analytics (for events) -->
         <script>
@@ -58,6 +60,7 @@ $langList = $repoCache->langList(25);
             <a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a>
         </div>
         
+        <script src="js/libs/bootstrap.min.js">
         <script type="text/javascript" src="js/script.js"></script>
         
         <!-- Google Analytics -->
