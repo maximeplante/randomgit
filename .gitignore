@@ -1,5 +1,8 @@
 src/config.php
 
+# For all zed users
+.zedstate
+
 # https://gist.github.com/octocat/9257657
 # Compiled source #
 ###################
@@ -26,7 +29,7 @@ src/config.php
 # Logs and databases #
 ######################
 *.log
-# setup/schema.sql needed
+# setup/schema.sql is needed
 #*.sql
 *.sqlite
  
