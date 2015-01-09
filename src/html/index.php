@@ -33,6 +33,12 @@ $langList = $repoCache->langList(25);
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         
+        <!-- "Fork me on GitHub" ribbon : https://github.com/simonwhitaker/github-fork-ribbon-css -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css">
+        <![endif]-->
+        
         <!-- Google Analytics (for events) -->
         <script>
             if (document.location.hostname.search("randomgit.com") !== -1) {
@@ -47,6 +53,13 @@ $langList = $repoCache->langList(25);
         </script>
     </head>
     <body>
+        <!-- "Fork me on GitHub" ribbon -->
+        <div class="github-fork-ribbon-wrapper right">
+            <div class="github-fork-ribbon">
+                <a href="https://github.com/Max840/randomgit">Fork me on GitHub</a>
+            </div>
+        </div>
+        
         <div class="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
             <h3>Explore random GitHub repositories by clicking on the blue button!</h3>
@@ -58,7 +71,6 @@ $langList = $repoCache->langList(25);
             </select>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
             <h3><a href="random.php" id="randBtn" class="btn btn-primary btn-lg" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
-            <a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a>
         </div>
         
         <script src="js/libs/bootstrap.min.js"></script>
