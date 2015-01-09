@@ -1,9 +1,9 @@
 <?php
-include(dirname(__FILE__) . '/../Classes/Repo.php');
-include(dirname(__FILE__) . '/../Classes/RepoCache.php');
-$config = include(dirname(__FILE__) . '/../config.php');
+include(dirname(__FILE__) . '/../../Classes/Repo.php');
+include(dirname(__FILE__) . '/../../Classes/RepoCache.php');
+$config = include(dirname(__FILE__) . '/../../config.php');
 
-if ($config['debug']) {
+if ($config['debug']){
     ini_set('display_errors', 'On');
 } else {
     ini_set('display_errors', 'Off');
@@ -21,7 +21,19 @@ try {
     
     $randomRepo = $repoCache->randomRepo($language);
     
-    header('location: ' . $randomRepo->getUrl());
+    $repoData = array(
+        'repo' => array(
+            'name' => $randomRepo->getName(),
+            'user' => $randomRepo->getUser(),
+            'url' => $randomRepo->getUrl()
+        )
+    );
+    
+    http_response_code(200);
+    
+    header('Content-Type: application/json');
+    
+    echo json_encode($repoData);
     
 } catch (Exception $e) {
     http_response_code(500);

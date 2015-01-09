@@ -14,7 +14,7 @@ if ($config['debug']) {
 }
 error_reporting(E_ALL | E_STRICT);
 
-$github = new GitHub();
+$github = new GitHub($config['githubAPI']['OAuth']['id'], $config['githubAPI']['OAuth']['secret']);
 
 $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 

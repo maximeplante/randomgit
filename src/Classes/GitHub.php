@@ -14,9 +14,15 @@ class GitHub
     // Repositories with a number of stars below minStars are considered to be "not interesting"
     private $minStars = 5;
     
-    function __construct()
+    // Used when doing a OAuth request to the API
+    private $oAuthId;
+    private $oAuthSecret;
+    
+    function __construct($oAuthId, $oAuthSecret)
     {
         Requests::register_autoloader();
+        $this->oAuthId = $oAuthId;
+        $this->oAuthSecret = $oAuthSecret;
     }
     
     public function getRandomRepo()
@@ -47,7 +53,10 @@ class GitHub
         $headers = array('User-Agent' => $this->userAgent);
         
         try {
-            $response = Requests::get('https://api.github.com/search/repositories?q=' . urlencode($query), $headers);
+            $url = 'https://api.github.com/search/repositories?q=' . urlencode($query)
+                . '&client_id=' . urlencode($this->oAuthId)
+                . '&client_secret=' . urlencode($this->oAuthSecret);
+            $response = Requests::get($url, $headers);
         } catch (Requests_Exception $e) {
             throw new ConnectionException('Unable to reach the GitHub API', 0);
         }
@@ -63,7 +72,7 @@ class GitHub
         $repoList = array();
         
         foreach ($rawRepoList->items as $rawRepo) {
-            $repo = new Repo($rawRepo->id, $rawRepo->html_url, $rawRepo->language);
+            $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->owner->login, $rawRepo->language);
             array_push($repoList, $repo);
         }
         
