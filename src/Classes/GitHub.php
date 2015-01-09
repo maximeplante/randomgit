@@ -94,7 +94,6 @@ class GitHub
             'Accept' => 'application/vnd.github.v3.html'
         );
         
-        
         try {
             $url = 'https://api.github.com/repos/' . urlencode($repoUser) . '/'. urlencode($repoName) . '/readme'
                 . '?client_id=' . urlencode($this->oAuthId)
