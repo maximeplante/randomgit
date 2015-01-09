@@ -47,17 +47,17 @@ $langList = $repoCache->langList(25);
         </script>
     </head>
     <body>
-        <div id="container">
+        <div class="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
             <h3>Explore random GitHub repositories by clicking on the blue button!</h3>
-            <select id="langSelect">
+            <select class="form-control">
                 <option value="0">Language filter...</option>
                 <?php foreach ($langList as $lang) { ?>
                     <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
                 <?php } ?>
             </select>
 			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
-            <h3><a href="random.php" id="randBtn" class="button" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
+            <h3><a href="random.php" id="randBtn" class="btn btn-primary btn-lg" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
             <a href="https://github.com/Max840/randomgit" target="_blank"><img src="img/github-logo.png" width="32" height="32" alt="Visit us on GitHub!"/></a>
         </div>
         
