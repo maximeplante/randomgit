@@ -53,13 +53,13 @@ class RepoCache
         if (!$repoAssocArray = $query->fetch()) {
             throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
         }
-        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang'], null);
+        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html']);
     }
     
     public function storeRepo(Repo $repo)
     {
-        $query = $this->prepareStatement('INSERT INTO repo_list (id, name, user, lang) VALUES (?, ?, ?, ?)');
-        if (!$query->execute(array($repo->getId(), $repo->getName(), $repo->getUser(), $repo->getLang()))) {
+        $query = $this->prepareStatement('INSERT INTO repo_list (id, name, user, lang, readme_html) VALUES (?, ?, ?, ?, ?)');
+        if (!$query->execute(array($repo->getId(), $repo->getName(), $repo->getUser(), $repo->getLang(), $repo->getReadmeHTML()))) {
             throw new DatabaseQueryException('Failed to save a repository to the cache', 0);
         }
     }
