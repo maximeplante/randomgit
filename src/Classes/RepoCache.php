@@ -53,7 +53,7 @@ class RepoCache
         if (!$repoAssocArray = $query->fetch()) {
             throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
         }
-        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang']);
+        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang'], null);
     }
     
     public function storeRepo(Repo $repo)

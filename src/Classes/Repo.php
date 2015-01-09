@@ -7,13 +7,16 @@ class Repo
     private $user;
     // The main programming language used in the repository
     private $lang;
+    // The HTML version of the readme
+    private $readme_html;
     
-    function __construct($id, $name, $user, $lang)
+    function __construct($id, $name, $user, $lang, $readme_html)
     {
         $this->id = $id;
         $this->name = $name;
         $this->user = $user;
         $this->lang = $lang;
+        $this->readme_html = $readme_html;
     }
     
     public function getId()
@@ -34,6 +37,11 @@ class Repo
     public function getUser()
     {
         return $this->user;
+    }
+    
+    public function getReadmeHTML()
+    {
+        return $this->readme_html;
     }
     
     public function getFullName()
