@@ -34,12 +34,14 @@ class RepoCache
     {
         // If no language specified, use the optimized randomization
         if ($language === null) {
+            
             $randomRank = mt_rand(1, $this->count());
             
             $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
             if (!$query->execute(array($randomRank))) {
                 throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
             }
+            
         // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
         } else {
             
@@ -53,6 +55,7 @@ class RepoCache
         if (!$repoAssocArray = $query->fetch()) {
             throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
         }
+        
         return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html']);
     }
     
