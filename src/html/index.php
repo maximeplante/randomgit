@@ -56,7 +56,7 @@ $langList = $repoCache->langList(25);
         <!-- "Fork me on GitHub" ribbon -->
         <div class="github-fork-ribbon-wrapper right">
             <div class="github-fork-ribbon">
-                <a href="https://github.com/Max840/randomgit">Fork me on GitHub</a>
+                <a href="https://github.com/Max840/randomgit" target="_blank">Fork me on GitHub</a>
             </div>
         </div>
         
@@ -86,7 +86,7 @@ $langList = $repoCache->langList(25);
             
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a href="#">
+                    <a href="#" target="_blank">
                         <span class="glyphicon glyphicon-link"></span>
                         <strong>Repo name</strong>
                     </a>&nbsp;
