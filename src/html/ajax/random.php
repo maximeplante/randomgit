@@ -22,7 +22,7 @@ try {
     $randomRepo = $repoCache->randomRepo($language);
     
     $repoData = array(
-        'repo' => array(
+        array(
             'name' => $randomRepo->getName(),
             'user' => $randomRepo->getUser(),
             'url' => $randomRepo->getUrl(),
