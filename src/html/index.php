@@ -62,15 +62,40 @@ $langList = $repoCache->langList(25);
         
         <div class="container">
             <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3>Explore random GitHub repositories by clicking on the blue button!</h3>
-            <select class="form-control">
-                <option value="0">Language filter...</option>
-                <?php foreach ($langList as $lang) { ?>
-                    <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
-                <?php } ?>
-            </select>
-			<!-- Remove the "return false;" because the link opens in a new tab and does not prevent Google Amalytics from sending the data -->
-            <h3><a href="random.php" id="randBtn" class="btn btn-primary btn-lg" target="_blank" onclick="trackOutboundLink('random.php');">Randomize!</a></h3>
+            <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
+            
+            <div class="row">
+                <div class="col-xs-9">
+                    <select class="form-control input-lg">
+                        <option value="0">Language filter...</option>
+                        <?php foreach ($langList as $lang) { ?>
+                            <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                
+                <div class="col-xs-3">
+                    <button id="randBtn" class="btn btn-primary btn-lg btn-block">
+                        <span class="glyphicon glyphicon-random"></span>&nbsp;
+                        Randomize!
+                    </button>
+                </div>
+            </div>
+            
+            <br>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-link"></span>
+                        <strong>Repo name</strong>
+                    </a>&nbsp;
+                    <span class="label label-primary">Language</span>
+                </div>
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+                </div>
+            </div>
         </div>
         
         <script src="js/libs/bootstrap.min.js"></script>

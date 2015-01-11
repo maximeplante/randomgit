@@ -17,3 +17,12 @@ h3 {
 .blueText {
     color: #00BBFF;
 }
+
+.panel-heading {
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.panel-heading a {
+    color: black;
+}
