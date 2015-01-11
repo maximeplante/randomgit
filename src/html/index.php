@@ -54,7 +54,7 @@ $langList = $repoCache->langList(25);
     </head>
     <body>
         <!-- "Fork me on GitHub" ribbon -->
-        <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon-wrapper right visible-md-block visible-lg-block">
             <div class="github-fork-ribbon">
                 <a href="https://github.com/Max840/randomgit" target="_blank">Fork me on GitHub</a>
             </div>
@@ -65,7 +65,7 @@ $langList = $repoCache->langList(25);
             <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
             
             <div class="row">
-                <div class="col-xs-9">
+                <div class="col-xs-6 col-sm-9">
                     <select class="form-control input-lg">
                         <option value="0">Language filter...</option>
                         <?php foreach ($langList as $lang) { ?>
@@ -74,9 +74,9 @@ $langList = $repoCache->langList(25);
                     </select>
                 </div>
                 
-                <div class="col-xs-3">
+                <div class="col-xs-6 col-sm-3">
                     <button id="randBtn" class="btn btn-primary btn-lg btn-block">
-                        <span class="glyphicon glyphicon-random"></span>&nbsp;
+                        <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
                         Randomize!
                     </button>
                 </div>

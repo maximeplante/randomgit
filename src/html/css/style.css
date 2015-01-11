@@ -26,3 +26,17 @@ h3 {
 .panel-heading a {
     color: black;
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 768px;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
