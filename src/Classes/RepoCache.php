@@ -175,7 +175,7 @@ class RepoCache
     {
         $query = $this->prepareStatement($queryString);
         
-        if (!$query->execute($parameters)) {
+        if ($query->execute($parameters) === false) {
             throw new DatabaseQueryException($exceptionMsg, 0);
         }
         
