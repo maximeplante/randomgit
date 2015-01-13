@@ -37,18 +37,18 @@ class RepoCache
             
             $randomRank = mt_rand(1, $this->count());
             
-            $query = $this->prepareStatement('SELECT * FROM repo_list WHERE rank=?');
-            if (!$query->execute(array($randomRank))) {
-                throw new DatabaseQueryException('Unable to get a random repository from the cache', 0);
-            }
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank=?',
+             array($randomRank),
+             'Unable to get a random repository from the cache'
+            );
             
         // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
         } else {
             
-            $query = $this->prepareStatement('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1');
-            if (!$query->execute(array($language))) {
-                throw new DatabaseQueryException('Unable to get a random repository from the cache using a language filter.', 0);
-            }
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
+             array($language),
+             'Unable to get a random repository from the cache using a language filter.'
+            );
             
         }
         
@@ -61,38 +61,44 @@ class RepoCache
     
     public function storeRepo(Repo $repo)
     {
-        $query = $this->prepareStatement('INSERT INTO repo_list (id, name, user, lang, readme_html) VALUES (?, ?, ?, ?, ?)');
-        if (!$query->execute(array($repo->getId(), $repo->getName(), $repo->getUser(), $repo->getLang(), $repo->getReadmeHTML()))) {
-            throw new DatabaseQueryException('Failed to save a repository to the cache', 0);
-        }
+        $this->executeQuery('INSERT INTO repo_list (id, name, user, lang, readme_html) VALUES (?, ?, ?, ?, ?)',
+         array(
+             $repo->getId(),
+             $repo->getName(),
+             $repo->getUser(),
+             $repo->getLang(),
+             $repo->getReadmeHTML()
+         ),
+         'Failed to save a repository to the cache'
+        );
     }
     
     // Empties the respository cache
     public function clear()
     {
-        $query = $this->prepareStatement('TRUNCATE TABLE repo_list');
-        if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to truncate the table repo_list');
-        }
+        $this->executeQuery('TRUNCATE TABLE repo_list',
+         array(),
+         'Failed to truncate the table repo_list'
+        );
     }
     
     // Removes randomly $count repos from the RepoCache
     public function randomRemove($count)
     {
         // Parameters can't be used with LIMIT because they are considered as text, using intval() as a filter for $count
-        $query = $this->prepareStatement('DELETE FROM repo_list ORDER BY RAND() LIMIT ' . intval($count));
-        if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to remove random repos from repo_list.');
-        }
+        $this->executeQuery('DELETE FROM repo_list ORDER BY RAND() LIMIT ' . intval($count),
+         array(),
+         'Failed to remove random repos from repo_list.'
+        );
     }
     
     // Checks if a repository is already in the cache
     public function isCached(Repo $repo)
     {
-        $query = $this->prepareStatement('SELECT * FROM repo_list WHERE id=?');
-        if (!$query->execute(array($repo->getId()))) {
-            throw new DatabaseQueryException('Failed to query the cache for a specific repository', 0);
-        }
+        $query = $this->executeQuery('SELECT * FROM repo_list WHERE id=?',
+         array($repo->getId()),
+         'Failed to query the cache for a specific repository'
+        );
         if ($query->fetch()) {
             return true;
         }
@@ -102,10 +108,10 @@ class RepoCache
     // Returns the number of repositories in the cache
     public function count()
     {
-        $query = $this->prepareStatement('SELECT COUNT(*) AS total FROM repo_list');
-        if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to count the number of entries in repo_list.');
-        }
+        $query = $this->executeQuery('SELECT COUNT(*) AS total FROM repo_list',
+         array(),
+         'Failed to count the number of entries in repo_list.'
+        );
         if (!$result = $query->fetch()) {
             throw new DatabaseQueryException('Failed fetch the number of entries in repo_list.');
         }
@@ -117,10 +123,10 @@ class RepoCache
      */
     public function giveRanks()
     {
-        $query = $this->prepareStatement('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);');
-        if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to set a rank to the element of repo_list.');
-        }
+        $this->executeQuery('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);',
+         array(),
+         'Failed to set a rank to the element of repo_list.'
+        );
     }
     
     /* Returns the list string[] of every single programming language used in the repositories of the cache
@@ -129,10 +135,10 @@ class RepoCache
      */
     public function langList($minOccurences = 0)
     {
-        $query = $this->prepareStatement('SELECT lang FROM repo_list GROUP BY lang HAVING COUNT(lang) >= ?;');
-        if (!$query->execute(array($minOccurences))) {
-            throw new DatabaseQueryException('Failed to find every programming language in repo_list.');
-        }
+        $query = $this->executeQuery('SELECT lang FROM repo_list GROUP BY lang HAVING COUNT(lang) >= ?;',
+         array($minOccurences),
+         'Failed to find every programming language in repo_list.'
+        );
         
         $langList = array();
         while ($result = $query->fetch()) {
@@ -153,10 +159,27 @@ class RepoCache
     // Locks repo_list (read/write) until this RepoCache instance is destroyed
     public function lock()
     {
-        $query = $this->prepareStatement("LOCK TABLES repo_list WRITE;");
-        if (!$query->execute()) {
-            throw new DatabaseQueryException('Failed to lock repo_list.');
+        $this->executeQuery('LOCK TABLES repo_list WRITE;',
+         array(),
+         'Failed to lock repo_list.'
+        );
+    }
+    
+    /* Executes a MYSQL query.
+     * string $queryString : the query string
+     * array $parameters : the input parameters of the query
+     * string $exceptionMsg : the message used if a DatabaseQueryException is thrown
+     * Returns the PDOStatement used for the query
+     */
+    private function executeQuery($queryString, $parameters, $exceptionMsg)
+    {
+        $query = $this->prepareStatement($queryString);
+        
+        if (!$query->execute($parameters)) {
+            throw new DatabaseQueryException($exceptionMsg, 0);
         }
+        
+        return $query;
     }
     
     /* If the query string is the same as the last one, it uses the same PDOStatement instance.
