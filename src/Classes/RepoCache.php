@@ -149,7 +149,7 @@ class RepoCache
          * the first element of the array will be null.
          * Removing the null element from the list.
          */
-        if ($langList[0] === null) {
+        if (isset($langList[0]) && $langList[0] === null) {
             array_shift($langList);
         }
         
