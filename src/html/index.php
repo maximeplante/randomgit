@@ -61,12 +61,11 @@ $langList = $repoCache->langList(25);
         </div>
         
         <div class="container">
-            <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
-            
+            <br>
             <div class="row">
-                <div class="col-xs-6 col-sm-9">
-                    <select class="form-control input-lg">
+                <div class="hidden-xs col-sm-2"></div>
+                <div class="col-xs-7 col-sm-5">
+                    <select class="form-control input-md">
                         <option value="0">Language filter...</option>
                         <?php foreach ($langList as $lang) { ?>
                             <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
@@ -74,12 +73,13 @@ $langList = $repoCache->langList(25);
                     </select>
                 </div>
                 
-                <div class="col-xs-6 col-sm-3">
-                    <button id="randBtn" class="btn btn-primary btn-lg btn-block">
+                <div class="col-xs-5 col-sm-3">
+                    <button id="randBtn" class="btn btn-primary btn-md btn-block">
                         <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
                         Randomize!
                     </button>
                 </div>
+                <div class="hidden-xs col-sm-2"></div>
             </div>
             
             <br>
@@ -90,10 +90,11 @@ $langList = $repoCache->langList(25);
                         <span class="glyphicon glyphicon-link"></span>
                         <strong>Repo name</strong>
                     </a>&nbsp;
-                    <span class="label label-primary">Language</span>
+                    <span class="label label-default">Language</span>
                 </div>
                 <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+                    <h1>Random<span class="blueText">Git</span>.com</h1>
+                    <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
                 </div>
             </div>
         </div>
