@@ -13,11 +13,10 @@ All you need is in the `setup` folder
 * Install a HTTP server with PHP and MySQL
 * Create a database and import `schema.sql` in it
 * Fill `config.php` with the database credentials and move it to `src/config.php`
-* Set a cron job to execute `src/Scripts/updateRepo.php` every 5 minutes
-* `src/html` is the public folder
+* Set a cron job to execute `src/job/updateCache.php` every 5 minutes
 
 ### ToDo
-* Optimize database transactions in `src/Classes/RepoCache.php`
+* Optimize database transactions in `src/lib/RepoCache.php`
 * Beautify index.php
 * Repository filtering (number of stars/forks, ...)
 * New AJAX interface

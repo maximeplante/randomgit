@@ -1,10 +1,10 @@
 <?php
 
-include(dirname(__FILE__) . '/../Libs/Requests.php');
-include(dirname(__FILE__) . '/../Classes/Helper.php');
-include(dirname(__FILE__) . '/../Classes/Repo.php');
-include(dirname(__FILE__) . '/../Classes/GitHub.php');
-include(dirname(__FILE__) . '/../Classes/RepoCache.php');
+include(dirname(__FILE__) . '/../vendor/Requests.php');
+include(dirname(__FILE__) . '/../lib/Helper.php');
+include(dirname(__FILE__) . '/../lib/Repo.php');
+include(dirname(__FILE__) . '/../lib/GitHub.php');
+include(dirname(__FILE__) . '/../lib/RepoCache.php');
 $config = include(dirname(__FILE__) . '/../config.php');
 
 if ($config['debug']){

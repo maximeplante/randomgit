@@ -70,7 +70,7 @@ class Requests {
 	const VERSION = '1.6';
 
 	/**
-	 * Registered transport classes
+	 * Registered transport lib
 	 *
 	 * @var array
 	 */
