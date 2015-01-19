@@ -65,7 +65,7 @@ $langList = $repoCache->langList(25);
             <div class="row">
                 <div class="hidden-xs col-sm-2"></div>
                 <div class="col-xs-7 col-sm-5">
-                    <select class="form-control input-md">
+                    <select id="langSelect" class="form-control input-md">
                         <option value="0">Language filter...</option>
                         <?php foreach ($langList as $lang) { ?>
                             <option value="<?php echo $lang; ?>"><?php echo $lang; ?></option>
