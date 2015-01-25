@@ -20,6 +20,8 @@ var Randomgit = {
     
     load: function() {
         this.fetchRepos();
+        
+        $("#rand-btn").click(this.showNextRepo.bind(this));
     },
     
     fetchRepos: function() {
@@ -39,5 +41,18 @@ var Randomgit = {
                 console.log(exception);
             }
         });
+    },
+    
+    showNextRepo: function() {
+        var repo = this.repos.shift();
+        
+        $("#repo-name").text(repo.name);
+        $("#repo-lang").text(repo.lang);
+        $("#repo-readme").html(repo.readme_html);
+        $("#repo-link").attr("href", repo.link);
+        
+        $("#readme-container").slideDown();
     }
 }
+
+Randomgit.load();

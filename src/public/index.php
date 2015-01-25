@@ -77,7 +77,7 @@ $langList = $repoCache->langList(25);
                 </div>
                 
                 <div class="col-xs-5 col-sm-3">
-                    <button id="randBtn" class="btn btn-primary btn-md btn-block">
+                    <button id="rand-btn" class="btn btn-primary btn-md btn-block">
                         <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
                         Randomize!
                     </button>
@@ -87,15 +87,15 @@ $langList = $repoCache->langList(25);
             
             <br>
             
-            <div class="panel panel-default hidden">
+            <div id="readme-container" class="panel panel-default" style="display: none;">
                 <div class="panel-heading">
-                    <a href="#" target="_blank">
+                    <a href="#" id="repo-link" target="_blank">
                         <span class="glyphicon glyphicon-link"></span>
-                        <strong>Repo name</strong>
+                        <strong id="repo-name">Repo name</strong>
                     </a>&nbsp;
-                    <span class="label label-default">Language</span>
+                    <span id="repo-lang" class="label label-default">Language</span>
                 </div>
-                <div class="panel-body">
+                <div id="repo-readme" class="panel-body">
                     
                 </div>
             </div>
