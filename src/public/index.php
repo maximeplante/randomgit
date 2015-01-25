@@ -29,7 +29,7 @@ $langList = $repoCache->langList(25);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         
@@ -61,7 +61,10 @@ $langList = $repoCache->langList(25);
         </div>
         
         <div class="container">
+            <h1>Random<span class="blueText">Git</span>.com</h1>
+            <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
             <br>
+            
             <div class="row">
                 <div class="hidden-xs col-sm-2"></div>
                 <div class="col-xs-7 col-sm-5">
@@ -84,7 +87,7 @@ $langList = $repoCache->langList(25);
             
             <br>
             
-            <div class="panel panel-default">
+            <div class="panel panel-default hidden">
                 <div class="panel-heading">
                     <a href="#" target="_blank">
                         <span class="glyphicon glyphicon-link"></span>
@@ -93,8 +96,7 @@ $langList = $repoCache->langList(25);
                     <span class="label label-default">Language</span>
                 </div>
                 <div class="panel-body">
-                    <h1>Random<span class="blueText">Git</span>.com</h1>
-                    <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
+                    
                 </div>
             </div>
         </div>
