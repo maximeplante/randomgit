@@ -56,7 +56,7 @@ $langList = $repoCache->langList(25);
         <!-- "Fork me on GitHub" ribbon -->
         <div class="github-fork-ribbon-wrapper right visible-md-block visible-lg-block">
             <div class="github-fork-ribbon">
-                <a href="https://github.com/Max840/randomgit" target="_blank">Fork me on GitHub</a>
+                <a href="//github.com/Max840/randomgit" target="_blank">Fork me on GitHub</a>
             </div>
         </div>
         
@@ -99,7 +99,7 @@ $langList = $repoCache->langList(25);
             </div>
         </div>
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
         
