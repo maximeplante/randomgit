@@ -24,23 +24,36 @@ var Randomgit = {
         $("#rand-btn").click(this.showNextRepo.bind(this));
     },
     
+    /**
+     * Adds 10 repos to the cache if the cache's size is smaller than 10.
+     * 
+     * @param cb A callback to be called when the request has been recieved
+     * 
+     * @todo Request a variable number of repos
+     */
     fetchRepos: function() {
-        $.ajax({
-            url: "ajax/random.php",
-            type: "GET",
-            dataType: "json",
-            context: this,
-            
-            success: function(newRepos) {
-                this.repos = this.repos.concat(newRepos);
-            },
-            
-            error: function(xhr, error, exception) {
-                console.log("Failed to fetch repos from the server");
-                console.log(error);
-                console.log(exception);
-            }
-        });
+        if(this.repos.length < 10) { // TODO: Makethis variable
+            $.ajax({
+                url: "ajax/random.php",
+                type: "GET",
+                data: {limit: 10}, // TODO: make this variable
+                dataType: "json",
+                context: this,
+                
+                success: function(newRepos) {
+                    this.repos = this.repos.concat(newRepos);
+                },
+                
+                error: function(xhr, error, exception) {
+                    console.log("Failed to fetch repos from the server");
+                    console.log(error);
+                    console.log(exception);
+                    console.log("Retrying...");
+                    
+                    this.fetchRepos();
+                }
+            });
+        }
     },
     
     showNextRepo: function() {
@@ -53,6 +66,8 @@ var Randomgit = {
         
         $("#intro").slideUp();
         $("#readme-container").slideDown();
+        
+        this.fetchRepos();
     }
 }
 
