@@ -51,6 +51,7 @@ var Randomgit = {
         $("#repo-readme").html(repo.readme_html);
         $("#repo-link").attr("href", repo.link);
         
+        $("#intro").slideUp();
         $("#readme-container").slideDown();
     }
 }

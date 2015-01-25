@@ -61,8 +61,11 @@ $langList = $repoCache->langList(25);
         </div>
         
         <div class="container">
-            <h1>Random<span class="blueText">Git</span>.com</h1>
-            <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
+            <header id="intro">
+                <h1>Random<span class="blueText">Git</span>.com</h1>
+                <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
+            </header>
+            
             <br>
             
             <div class="row">
