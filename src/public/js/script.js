@@ -60,13 +60,16 @@ var Randomgit = {
     showNextRepo: function() {
         var repo = this.repos.shift();
         
-        $("#repo-name").text(repo.name);
-        $("#repo-lang").text(repo.lang);
-        $("#repo-readme").html(repo.readme_html);
-        $("#repo-link").attr("href", repo.link);
-        
         $("#intro").slideUp();
-        $("#readme-container").slideDown();
+        
+        $("#readme-container").slideUp(400, function() {
+            $("#repo-name").text(repo.name);
+            $("#repo-lang").text(repo.lang);
+            $("#repo-readme").html(repo.readme_html);
+            $("#repo-link").attr("href", repo.link);
+            
+            $(this).slideDown();
+        });
         
         this.fetchRepos();
         
