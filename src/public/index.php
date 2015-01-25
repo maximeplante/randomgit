@@ -81,8 +81,14 @@ $langList = $repoCache->langList(25);
                 
                 <div class="col-xs-5 col-sm-3">
                     <button id="rand-btn" class="btn btn-primary btn-md btn-block">
-                        <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
-                        Randomize!
+                        <!-- When the button is enabled, only the first <span> is visible and vice-versa -->
+                        <span class="on-btn-enabled">
+                            <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
+                            Randomize!
+                        </span>
+                        <span class="on-btn-disabled">
+                            Loading...
+                        </span>
                     </button>
                 </div>
                 <div class="hidden-xs col-sm-2"></div>

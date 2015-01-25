@@ -42,6 +42,7 @@ var Randomgit = {
                 
                 success: function(newRepos) {
                     this.repos = this.repos.concat(newRepos);
+                    this.enableRandBtn();
                 },
                 
                 error: function(xhr, error, exception) {
@@ -68,6 +69,19 @@ var Randomgit = {
         $("#readme-container").slideDown();
         
         this.fetchRepos();
+        
+        console.log(this.repos.length);
+        if(this.repos.length === 0) {
+            this.disableRandBtn();
+        }
+    },
+    
+    disableRandBtn: function() {
+        $("#rand-btn").prop("disabled", true);
+    },
+    
+    enableRandBtn: function() {
+        $("#rand-btn").prop("disabled", false);
     }
 }
 

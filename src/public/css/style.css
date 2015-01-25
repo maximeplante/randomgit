@@ -18,6 +18,14 @@ h3 {
     color: #00BBFF;
 }
 
+.btn:enabled .on-btn-disabled {
+    display: none;
+}
+
+.btn:disabled .on-btn-enabled {
+    display: none;
+}
+
 .panel-heading {
     text-align: left;
 }
