@@ -65,12 +65,11 @@ var Randomgit = {
         $("#intro").slideUp();
         
         $("#readme-container").slideUp(400, function() {
-            $("#repo-name").text(repo.name);
-            $("#repo-lang").text(repo.lang);
-            $("#repo-readme").html(repo.readme_html);
-            $("#repo-link").attr("href", repo.url);
+            var template = tmpl("repo_tmpl", repo);
             
-            $(this).slideDown();
+            $(this)
+                .html(template)
+                .slideDown();
         });
         
         this.fetchRepos();

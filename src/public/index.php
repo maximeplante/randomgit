@@ -96,28 +96,37 @@ $langList = $repoCache->langList(25);
             
             <br>
             
-            <div id="readme-container" class="panel panel-default" style="display: none;">
-                <div class="panel-heading">
-                    <a href="#" id="repo-link" target="_blank">
-                        <span class="glyphicon glyphicon-link"></span>
-                        <strong id="repo-name">Repo name</strong>
-                    </a>&nbsp;
-                    <span id="repo-lang" class="label label-default">Language</span>
-                </div>
-                <div id="repo-readme" class="panel-body">
-                    
-                </div>
+            <div id="readme-container">
+                <!-- The readme will be added here following the template below -->
             </div>
+            
+            
         </div>
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/template.js"></script>
         <script src="js/script.js"></script>
         <script>
             Randomgit.cache = <?php
                 echo '[]';
             ?>;
             Randomgit.load();
+        </script>
+        
+        <script type="text/html" id="repo_tmpl">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="<%=url%>" id="repo-link" target="_blank">
+                        <span class="glyphicon glyphicon-link"></span>
+                        <strong id="repo-name"><%=name%></strong>
+                    </a>&nbsp;
+                    <span id="repo-lang" class="label label-default"><%=lang%></span>
+                </div>
+                <div id="repo-readme" class="panel-body">
+                    <%=readme_html%>
+                </div>
+            </div>
         </script>
         
         <!-- Google Analytics -->
