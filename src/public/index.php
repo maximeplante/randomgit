@@ -113,6 +113,12 @@ $langList = $repoCache->langList(25);
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
+        <script>
+            Randomgit.cache = <?php
+                echo '[]';
+            ?>;
+            Randomgit.load();
+        </script>
         
         <!-- Google Analytics -->
         <script>

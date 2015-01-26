@@ -105,5 +105,3 @@ var Randomgit = {
         this.fetchRepos();
     }
 }
-
-Randomgit.load();
