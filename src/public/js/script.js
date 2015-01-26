@@ -1,19 +1,9 @@
-var langSelect = document.getElementById("langSelect");
-var randBtn = document.getElementById("randBtn");
-
-// Updates the 'lang' url parameter
-langSelect.addEventListener("change", function() {
-    var language = langSelect.value;
-    var href = "random.php";
-    if (language !== "0") {
-        href += "?lang=" + encodeURIComponent(language);
-    }
-    randBtn.href = href;
-});
-
 var Randomgit = {
     // Array of repositories currently loaded
     cache: [],
+    
+    // Current language filter
+    lang: "all",
     
     // Amount of pending requests to ajax/random.php
     currentRequests: 0,
@@ -22,6 +12,7 @@ var Randomgit = {
         this.fetchRepos();
         
         $("#rand-btn").click(this.showNextRepo.bind(this));
+        $("#lang-select").change(this.changeLanguage.bind(this));
     },
     
     /**
@@ -32,17 +23,27 @@ var Randomgit = {
      * @todo Request a variable number of repos
      */
     fetchRepos: function() {
+        var lang = this.lang,
+            data = {limit: 10};  // TODO: make the amount variable
+        
+        if(lang !== "all") {
+            data.lang = lang;
+        }
+        
         if(this.cache.length < 10) { // TODO: Makethis variable
             $.ajax({
                 url: "ajax/random.php",
                 type: "GET",
-                data: {limit: 10}, // TODO: make this variable
+                data: data,
                 dataType: "json",
                 context: this,
                 
                 success: function(newRepos) {
-                    this.cache = this.cache.concat(newRepos);
-                    this.enableRandBtn();
+                    // Makes sure the language hasn't changed since the request was sent
+                    if(lang === this.lang) {
+                        this.cache = this.cache.concat(newRepos);
+                        this.enableRandBtn();
+                    }
                 },
                 
                 error: function(xhr, error, exception) {
@@ -84,6 +85,13 @@ var Randomgit = {
     
     enableRandBtn: function() {
         $("#rand-btn").prop("disabled", false);
+    },
+    
+    changeLanguage: function() {
+        this.lang = $("#lang-select").val();
+        this.cache = [];
+        this.disableRandBtn();
+        this.fetchRepos();
     }
 }
 
