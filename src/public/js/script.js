@@ -66,7 +66,7 @@ var Randomgit = {
             $("#repo-name").text(repo.name);
             $("#repo-lang").text(repo.lang);
             $("#repo-readme").html(repo.readme_html);
-            $("#repo-link").attr("href", repo.link);
+            $("#repo-link").attr("href", repo.url);
             
             $(this).slideDown();
         });
