@@ -16,9 +16,7 @@ var Randomgit = {
     },
     
     /**
-     * Adds 10 repos to the cache if the cache's size is smaller than 10.
-     * 
-     * @param cb A callback to be called when the request has been recieved
+     * Checks the cache's size. If it contains less than 10 repos, fetches 10 more.
      * 
      * @todo Request a variable number of repos
      */
@@ -58,6 +56,9 @@ var Randomgit = {
         }
     },
     
+    /**
+     * Pops the next repo from the cache and shows it.
+     */
     showNextRepo: function() {
         var repo = this.cache.shift();
         
@@ -79,14 +80,24 @@ var Randomgit = {
         }
     },
     
+    /**
+     * Disables the "Randomize!" button and changes its text to "Loading..."
+     * The text change is done with CSS
+     */
     disableRandBtn: function() {
         $("#rand-btn").prop("disabled", true);
     },
     
+    /**
+     * Re-enables the Randomize! button
+     */
     enableRandBtn: function() {
         $("#rand-btn").prop("disabled", false);
     },
     
+    /**
+     * Updates the current language according to the value of #lang-select
+     */
     changeLanguage: function() {
         this.lang = $("#lang-select").val();
         this.cache = [];
