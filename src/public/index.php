@@ -99,8 +99,6 @@ $langList = $repoCache->langList(25);
             <div id="readme-container">
                 <!-- The readme will be added here following the template below -->
             </div>
-            
-            
         </div>
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
