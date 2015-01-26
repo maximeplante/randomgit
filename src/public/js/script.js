@@ -13,7 +13,7 @@ langSelect.addEventListener("change", function() {
 
 var Randomgit = {
     // Array of repositories currently loaded
-    repos: [],
+    cache: [],
     
     // Amount of pending requests to ajax/random.php
     currentRequests: 0,
@@ -32,7 +32,7 @@ var Randomgit = {
      * @todo Request a variable number of repos
      */
     fetchRepos: function() {
-        if(this.repos.length < 10) { // TODO: Makethis variable
+        if(this.cache.length < 10) { // TODO: Makethis variable
             $.ajax({
                 url: "ajax/random.php",
                 type: "GET",
@@ -41,7 +41,7 @@ var Randomgit = {
                 context: this,
                 
                 success: function(newRepos) {
-                    this.repos = this.repos.concat(newRepos);
+                    this.cache = this.cache.concat(newRepos);
                     this.enableRandBtn();
                 },
                 
@@ -58,7 +58,7 @@ var Randomgit = {
     },
     
     showNextRepo: function() {
-        var repo = this.repos.shift();
+        var repo = this.cache.shift();
         
         $("#intro").slideUp();
         
@@ -73,8 +73,7 @@ var Randomgit = {
         
         this.fetchRepos();
         
-        console.log(this.repos.length);
-        if(this.repos.length === 0) {
+        if(this.cache.length === 0) {
             this.disableRandBtn();
         }
     },
