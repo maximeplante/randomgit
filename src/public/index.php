@@ -107,6 +107,7 @@ $langList = $repoCache->langList(25);
         <script src="js/script.js"></script>
         <script>
             Randomgit.cache = <?php
+                // Waiting for the feature to be implemented on server-side
                 echo '[]';
             ?>;
             Randomgit.load();
