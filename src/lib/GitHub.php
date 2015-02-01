@@ -65,7 +65,7 @@ class GitHub
         foreach ($rawRepoList->items as $rawRepo) {
             try {
                 $readme_html = $this->getReadmeHTML($rawRepo->name, $rawRepo->owner->login);
-                $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->owner->login, $rawRepo->language, $readme_html);
+                $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->description, $rawRepo->owner->login, $rawRepo->language, $readme_html);
                 array_push($repoList, $repo);
             } catch (GitHubAPINotFoundException $e) {
                 // Simply ignores the repository if no readme found

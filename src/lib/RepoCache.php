@@ -56,15 +56,16 @@ class RepoCache
             throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
         }
         
-        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html']);
+        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['description'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html']);
     }
     
     public function storeRepo(Repo $repo)
     {
-        $this->executeQuery('INSERT INTO repo_list (id, name, user, lang, readme_html) VALUES (?, ?, ?, ?, ?)',
+        $this->executeQuery('INSERT INTO repo_list (id, name, description, user, lang, readme_html) VALUES (?, ?, ?, ?, ?, ?)',
          array(
              $repo->getId(),
              $repo->getName(),
+             $repo->getDescription(),
              $repo->getUser(),
              $repo->getLang(),
              $repo->getReadmeHTML()

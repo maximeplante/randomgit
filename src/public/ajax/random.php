@@ -39,6 +39,7 @@ try {
         $repo = array(
             'name' => $randomRepo->getName(),
             'user' => $randomRepo->getUser(),
+            'description' => $randomRepo->getDescription(),
             'url' => $randomRepo->getUrl(),
             'lang' => $randomRepo->getLang(),
             'readme_html' => $randomRepo->getReadmeHTML()
