@@ -1,14 +1,5 @@
 <?php
-include(dirname(__FILE__) . '/../../lib/Repo.php');
-include(dirname(__FILE__) . '/../../lib/RepoCache.php');
-$config = include(dirname(__FILE__) . '/../../config.php');
-
-if ($config['debug']) {
-    ini_set('display_errors', 'On');
-} else {
-    ini_set('display_errors', 'Off');
-}
-error_reporting(E_ALL | E_STRICT);
+include(dirname(__FILE__) . '/../../autoload.php');
 
 try {
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);

@@ -1,14 +1,5 @@
 <?php
-include(dirname(__FILE__) . '/../lib/Repo.php');
-include(dirname(__FILE__) . '/../lib/RepoCache.php');
-$config = include(dirname(__FILE__) . '/../config.php');
-
-if ($config['debug']) {
-    ini_set('display_errors', 'On');
-} else {
-    ini_set('display_errors', 'Off');
-}
-error_reporting(E_ALL | E_STRICT);
+include(dirname(__FILE__) . '/../autoload.php');
 
 $language = null;
 // Checking if a language filter is specified
