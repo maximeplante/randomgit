@@ -17,9 +17,10 @@ return array(
      * https://github.com/settings/applications/new
      * to get an OAuth client id and secret.
      * 
-     * For developpement purposes, this can be left empty.
+     * For development purposes, this can be left empty.
      * It will instead use the public github API. The only
-     * donwside is that less repos will be fetched at a time.
+     * downside is that less repos will be fetched during
+     * one query of job/updateCache.php.
      */
     'githubAPI' => array(
         'OAuth' => array(
