@@ -6,6 +6,8 @@ class DatabaseConnectionException extends DatabaseException { }
 
 class DatabaseQueryException extends DatabaseException { }
 
+class QueryException extends RuntimeException { }
+
 // The repository cache is stored in the table 'repo_list' (see setup/schema.sql)
 class RepoCache
 {
@@ -44,6 +46,17 @@ class RepoCache
             
         // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
         } else {
+            
+            // Check if the language exists in the database
+            $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
+             array($language),
+             'Unable to count the number of occurrences of a language.'
+            );
+            
+            // If the language does not exist, throw an exception
+            if ($query->fetch()[0] < 1) {
+                throw new QueryException('The language specified (' . $language . ') does not exist in the database.');
+            }
             
             $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
              array($language),
