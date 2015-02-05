@@ -20,6 +20,11 @@ function autoloader($class)
 
 spl_autoload_register('autoloader');
 
+// Checks if config.php exists.
+if (!file_exists(dirname(__FILE__) . '/config.php')) {
+    exit('Cannot find config.php');
+}
+
 // The configuration file is accessible from everywhere
 $config = include(dirname(__FILE__) . '/config.php');
 
