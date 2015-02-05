@@ -41,5 +41,7 @@ set_exception_handler(function($exception) use (&$config) {
      */
     if ($config['debug']) {
         throw $exception;
+    } else {
+        echo 'Something wrong happened, try refreshing the page';
     }
 });
