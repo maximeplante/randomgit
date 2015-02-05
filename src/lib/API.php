@@ -1,6 +1,8 @@
 <?php
 
-// Converts data to the API output format (without the json encoding)
+/* Converts data to the output format required by the client.
+ * (without the json encoding)
+ */
 abstract class API
 {
     // Convert an array of Repo objects
