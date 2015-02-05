@@ -18,18 +18,18 @@ if (isset($_GET['limit']) && intval($_GET['limit']) > 0) {
 }
 
 try {
+    header('Content-Type: application/json');
+    
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
     
     $repoList = $repoCache->randomRepo($limit, $language);
     
     http_response_code(200);
     
-    header('Content-Type: application/json');
-    
     // Sends the json data to the client
     echo json_encode(API::convertRepoArray($repoList));
     
 } catch (Exception $e) {
-    http_response_code(500);
+    echo json_encode(API::errorMessage('Something wrong happened.'));
     throw $e;
 }

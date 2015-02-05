@@ -31,4 +31,13 @@ abstract class API
          'readme_html' => $repo->getReadmeHTML()
         );
     }
+    
+    static function errorMessage($message)
+    {
+        return array(
+         'error' => array(
+           'message' => $message
+          )
+        );
+    }
 }
