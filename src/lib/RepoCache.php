@@ -29,47 +29,56 @@ class RepoCache
         }
     }
     
-    /* Returns a random repository.
+    /* Returns an array of random repositories.
+     * Set $count to the number of repositories to return in the array
      * If $language (string) is specified, it will only return repositories having this language as main programming language¸
      */
-    public function randomRepo($language = null)
+    public function randomRepo($count = 1, $language = null)
     {
-        // If no language specified, use the optimized randomization
-        if ($language === null) {
-            
-            $randomRank = mt_rand(1, $this->count());
-            
-            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank=?',
-             array($randomRank),
-             'Unable to get a random repository from the cache'
-            );
-            
-        // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
-        } else {
-            
-            // Check if the language exists in the database
-            $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
-             array($language),
-             'Unable to count the number of occurrences of a language.'
-            );
-            
-            // If the language does not exist, throw an exception
-            if ($query->fetch()[0] < 1) {
-                throw new QueryException('The language specified (' . $language . ') does not exist in the database.');
+        $repoList = array();
+        
+        for ($i = 0; $i < $count; $i++) {
+            // If no language specified, use the optimized randomization
+            if ($language === null) {
+                
+                $randomRank = mt_rand(1, $this->count());
+                
+                $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank=?',
+                 array($randomRank),
+                 'Unable to get a random repository from the cache'
+                );
+                
+            // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
+            } else {
+                
+                // Check if the language exists in the database
+                $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
+                 array($language),
+                 'Unable to count the number of occurrences of a language.'
+                );
+                
+                // If the language does not exist, throw an exception
+                if ($query->fetch()[0] < 1) {
+                    throw new QueryException('The language specified (' . $language . ') does not exist in the database.');
+                }
+                
+                $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
+                 array($language),
+                 'Unable to get a random repository from the cache using a language filter.'
+                );
+                
             }
             
-            $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
-             array($language),
-             'Unable to get a random repository from the cache using a language filter.'
-            );
+            if (!$repoAssocArray = $query->fetch()) {
+                throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
+            }
             
+            array_push($repoList,
+              new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['description'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html'])
+            );
         }
         
-        if (!$repoAssocArray = $query->fetch()) {
-            throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
-        }
-        
-        return new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['description'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html']);
+        return $repoList;
     }
     
     public function storeRepo(Repo $repo)

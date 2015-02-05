@@ -10,7 +10,7 @@ if (isset($_GET['lang'])) {
 try {
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
     
-    $randomRepo = $repoCache->randomRepo($language);
+    $randomRepo = $repoCache->randomRepo(1, $language)[0];
     
     header('location: ' . $randomRepo->getUrl());
     

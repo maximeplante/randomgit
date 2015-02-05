@@ -20,14 +20,14 @@ if (isset($_GET['limit']) && intval($_GET['limit']) > 0) {
 try {
     $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
     
-    $data = API::random($repoCache, $limit, $language);
+    $repoList = $repoCache->randomRepo($limit, $language);
     
     http_response_code(200);
     
     header('Content-Type: application/json');
     
     // Sends the json data to the client
-    echo $data;
+    echo json_encode(API::convertRepoArray($repoList));
     
 } catch (Exception $e) {
     http_response_code(500);

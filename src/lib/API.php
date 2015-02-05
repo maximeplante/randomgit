@@ -1,29 +1,32 @@
 <?php
 
+// Converts data to the API output format (without the json encoding)
 abstract class API
 {
-    static function random(RepoCache $repoCache, $limit = 1, $language = null)
+    // Convert an array of Repo objects
+    static function convertRepoArray($repoList)
     {
-        $repoList = array();
+        $data = array();
         
-        // Fills the array with the data of the repositories
-        for ($i = 0; $i < $limit; $i++) {
-            
-            $randomRepo = $repoCache->randomRepo($language);
-            
-            $repo = array(
-                'name' => $randomRepo->getName(),
-                'user' => $randomRepo->getUser(),
-                'description' => $randomRepo->getDescription(),
-                'url' => $randomRepo->getUrl(),
-                'lang' => $randomRepo->getLang(),
-                'readme_html' => $randomRepo->getReadmeHTML()
+        foreach ($repoList as $repo) {
+            array_push($data,
+             self::convertRepo($repo)
             );
-            
-            array_push($repoList, $repo);
-            
         }
         
-        return json_encode($repoList);
+        return $data;
+    }
+    
+    // Converts a Repo object
+    static function convertRepo(Repo $repo)
+    {
+        return array(
+         'name' => $repo->getName(),
+         'user' => $repo->getUser(),
+         'description' => $repo->getDescription(),
+         'url' => $repo->getUrl(),
+         'lang' => $repo->getLang(),
+         'readme_html' => $repo->getReadmeHTML()
+        );
     }
 }

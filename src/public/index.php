@@ -99,7 +99,8 @@ $langList = $repoCache->langList(25);
         <script>
             Randomgit.cache = <?php
                 // Preloading the cache
-                echo API::random($repoCache, 10);
+                $repoList = $repoCache->randomRepo(10);
+                echo json_encode(API::convertRepoArray($repoList));
             ?>;
             Randomgit.load();
         </script>
