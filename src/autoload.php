@@ -31,7 +31,8 @@ if ($config['debug']) {
 }
 error_reporting(E_ALL | E_STRICT);
 
-set_exception_handler(function($exception) {
+// Set the exception handler
+set_exception_handler(function($exception) use (&$config) {
     http_response_code(500);
     error_log($exception);
     
@@ -39,6 +40,6 @@ set_exception_handler(function($exception) {
      * webpage.
      */
     if ($config['debug']) {
-        throw $e;
+        throw $exception;
     }
 });
