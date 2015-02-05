@@ -32,6 +32,7 @@ abstract class API
         );
     }
     
+    // Converts a string to an error message
     static function errorMessage($message)
     {
         return array(
