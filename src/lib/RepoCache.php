@@ -25,7 +25,7 @@ class RepoCache
             $dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
             $this->db = new PDO($dsn, $user, $pass);
         } catch (PDOException $e) {
-            throw new DatabaseConnectionException($e->getMessage() . ':' . $e->getCode(), 0);
+            throw new DatabaseConnectionException('Unable to connect to the database. Please check if config.php is properly set. Error : ' . $e->getMessage() . '(' . $e->getCode() . ')', 0);
         }
     }
     
