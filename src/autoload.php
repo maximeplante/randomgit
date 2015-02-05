@@ -34,7 +34,6 @@ error_reporting(E_ALL | E_STRICT);
 // Set the exception handler
 set_exception_handler(function($exception) use (&$config) {
     http_response_code(500);
-    error_log($exception);
     
     /* If the website is in debug mode, rethrow the exception to print it on the
      * webpage.
@@ -42,6 +41,8 @@ set_exception_handler(function($exception) use (&$config) {
     if ($config['debug']) {
         throw $exception;
     } else {
+        // Logs error only in release mode
+        error_log($exception);
         echo 'Something wrong happened, try refreshing the page';
     }
 });
