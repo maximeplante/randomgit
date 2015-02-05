@@ -43,6 +43,6 @@ set_exception_handler(function($exception) use (&$config) {
     } else {
         // Logs error only in release mode
         error_log($exception);
-        echo 'Something wrong happened, try refreshing the page';
+        echo 'Something wrong happened, try refreshing the page.';
     }
 });
