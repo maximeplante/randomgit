@@ -38,7 +38,7 @@ abstract class API
         return array(
          'error' => array(
            'message' => $message
-          )
+         )
         );
     }
 }
