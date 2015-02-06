@@ -29,19 +29,6 @@ $langList = $repoCache->langList(25);
         <!--[if lt IE 9]>
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css">
         <![endif]-->
-        
-        <!-- Google Analytics (for events) -->
-        <script>
-            if (document.location.hostname.search("randomgit.com") !== -1) {
-                var trackOutboundLink = function(url) {
-                    ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
-                        function () {
-                            // Do nothing since the link has already been opened in a new window
-                        }
-                    });
-                };
-            }
-        </script>
     </head>
     <body>
         <!-- "Fork me on GitHub" ribbon -->
