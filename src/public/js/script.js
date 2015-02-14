@@ -28,14 +28,20 @@ var Randomgit = {
             data.lang = lang;
         }
         
-        if(this.cache.length < 10 && this.currentRequests < 2) { // TODO: Make this variable
-            this.currentRequests++
+        /* Sends a request to fetch data when the cache's size goes below 10.
+         * Sends another one when the cache's size goes below 5. Thus, the two
+         * requests won't happen at the same time which can avoid them bugging
+         * because of them same network mini-lag.
+         */
+        if(this.cache.length < 10 && this.currentRequests < 1 || this.cache.length < 5 && this.currentRequests < 2) {
+            this.currentRequests++;
             
             $.ajax({
                 url: "ajax/random.php",
                 type: "GET",
                 data: data,
                 dataType: "json",
+                timeout: 30000,
                 context: this,
                 
                 success: function(newRepos) {
@@ -52,12 +58,13 @@ var Randomgit = {
                     console.log(exception);
                     console.log("Retrying...");
                     
+                    var self = this;
                     setTimeout(function() {
-                        this.fetchRepos();
+                        self.fetchRepos();
                     }, 1000);
                 },
                 
-                always: function() {
+                complete: function() {
                     this.currentRequests--;
                 }
             });
