@@ -8,6 +8,7 @@ $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config
 try {
     // Fetching new GitHub repositories until it reaches the rate limit of the GitHub API
     $randomRepoList = array();
+    
     // Does multiple fetches to get more repositories
     for ($i = 0;  $i < 5; $i++) {
         $randomRepoList = array_merge($randomRepoList, $github->getRandomRepoList(true));
@@ -35,6 +36,7 @@ if ($repoOverflowCount > 0) {
     // Deletes more than just the overflow to prevent repositories from staying for ever in the cache
     $repoCache->randomRemove($repoOverflowCount + ceil(RepoCache::MAX_REPOCACHE_SIZE / 4));
 }
+
 // Assigns a rank to every repository (used in RepoCache::randomRepo())
 $repoCache->giveRanks();
 
