@@ -28,7 +28,9 @@ var Randomgit = {
             data.lang = lang;
         }
         
-        if(this.cache.length < 10) { // TODO: Makethis variable
+        if(this.cache.length < 10 && this.currentRequests < 2) { // TODO: Make this variable
+            this.currentRequests++
+            
             $.ajax({
                 url: "ajax/random.php",
                 type: "GET",
@@ -50,7 +52,13 @@ var Randomgit = {
                     console.log(exception);
                     console.log("Retrying...");
                     
-                    this.fetchRepos();
+                    setTimeout(function() {
+                        this.fetchRepos();
+                    }, 1000);
+                },
+                
+                always: function() {
+                    this.currentRequests--;
                 }
             });
         }
