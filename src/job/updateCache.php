@@ -35,6 +35,7 @@ if ($repoOverflowCount > 0) {
     // Deletes more than just the overflow to prevent repositories from staying for ever in the cache
     $repoCache->randomRemove($repoOverflowCount + ceil(RepoCache::MAX_REPOCACHE_SIZE / 4));
 }
+
 // Assigns a rank to every repository (used in RepoCache::randomRepo())
 $repoCache->giveRanks();
 
