@@ -74,7 +74,7 @@ $langList = $repoCache->langList(25);
                 </div>
                 
                 <div class="col-xs-5 col-sm-3">
-                    <button id="rand-btn" class="btn btn-primary btn-md btn-block">
+                    <button id="rand-btn" class="btn btn-primary btn-md btn-block" disabled>
                         <!-- When the button is enabled, only the first <span> is visible and vice-versa -->
                         <span class="on-btn-enabled">
                             <span class="hidden-xs"><span class="glyphicon glyphicon-random"></span>&nbsp;</span>
@@ -106,6 +106,7 @@ $langList = $repoCache->langList(25);
                 echo json_encode(API::convertRepoArray($repoList));
             ?>;
             Randomgit.load();
+            Randomgit.enableRandBtn();
         </script>
         
         <script type="text/html" id="repo_tmpl">
