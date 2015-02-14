@@ -94,6 +94,11 @@ var Randomgit = {
         if(this.cache.length === 0) {
             this.disableRandBtn();
         }
+        
+        // Send a google analytics event to track the click on Randomize!
+        if(typeof _gaq == "object") {
+            _gaq.push(["_trackEvent", "Repositories", "Randomize", this.lang]);
+        }
     },
     
     /**
