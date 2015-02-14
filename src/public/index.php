@@ -93,16 +93,18 @@ $langList = $repoCache->langList(25);
         </script>
         
         <script type="text/html" id="repo_tmpl">
-            <div id="next-repo" class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="<%=url%>" id="repo-link" target="_blank">
-                        <span class="glyphicon glyphicon-link"></span>
-                        <strong id="repo-name"><%=name%></strong>
-                    </a>&nbsp;
-                    <span id="repo-lang" class="label label-default"><%=lang%></span>
-                </div>
-                <div id="repo-readme" class="panel-body">
-                    <%=readme_html%>
+            <div id="next-repo">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="<%=url%>" id="repo-link" target="_blank">
+                            <span class="glyphicon glyphicon-link"></span>
+                            <strong id="repo-name"><%=name%></strong>
+                        </a>&nbsp;
+                        <span id="repo-lang" class="label label-default"><%=lang%></span>
+                    </div>
+                    <div id="repo-readme" class="panel-body">
+                        <%=readme_html%>
+                    </div>
                 </div>
             </div>
         </script>
