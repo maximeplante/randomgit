@@ -26,6 +26,21 @@ h3 {
     display: none;
 }
 
+#readme-container > * {
+    position: absolute;
+    width: 770px;
+}
+
+#readme-container #current-repo {
+    z-index: 0;
+}
+
+#readme-container #next-repo {
+    display: none;
+    opacity: 0;
+    z-index: 1;
+}
+
 .panel-heading {
     text-align: left;
 }

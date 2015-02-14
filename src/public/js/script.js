@@ -62,15 +62,24 @@ var Randomgit = {
     showNextRepo: function() {
         var repo = this.cache.shift();
         
+        if($("#next-repo").length === 0) {
+            var template = tmpl("repo_tmpl", repo);
+            $(template).appendTo("#readme-container");
+            repo = this.cache.shift();
+        }
+        
         $("#intro").slideUp();
         
-        $("#readme-container").slideUp(400, function() {
-            var template = tmpl("repo_tmpl", repo);
-            
-            $(this)
-                .html(template)
-                .slideDown();
-        });
+        $("#next-repo")
+            .css("display", "block")
+            .animate({"opacity": 1}, 200, function() {
+                $("#current-repo").remove();
+                $("#next-repo").attr("id", "current-repo");
+                
+                // Loads the next readme in a hidden div
+                var template = tmpl("repo_tmpl", repo);
+                $(template).appendTo("#readme-container");
+            });
         
         this.fetchRepos();
         
@@ -98,9 +107,10 @@ var Randomgit = {
      * Updates the current language according to the value of #lang-select
      */
     changeLanguage: function() {
+        this.disableRandBtn();
         this.lang = $("#lang-select").val();
         this.cache = [];
-        this.disableRandBtn();
+        $("#next-repo").remove();
         this.fetchRepos();
     }
 }

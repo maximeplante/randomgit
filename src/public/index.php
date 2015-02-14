@@ -93,7 +93,7 @@ $langList = $repoCache->langList(25);
         </script>
         
         <script type="text/html" id="repo_tmpl">
-            <div class="panel panel-default">
+            <div id="next-repo" class="panel panel-default">
                 <div class="panel-heading">
                     <a href="<%=url%>" id="repo-link" target="_blank">
                         <span class="glyphicon glyphicon-link"></span>
