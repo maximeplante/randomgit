@@ -8,6 +8,7 @@ $repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config
 try {
     // Fetching new GitHub repositories until it reaches the rate limit of the GitHub API
     $randomRepoList = array();
+    
     // Does multiple fetches to get more repositories
     for ($i = 0;  $i < 5; $i++) {
         $randomRepoList = array_merge($randomRepoList, $github->getRandomRepoList(true));
