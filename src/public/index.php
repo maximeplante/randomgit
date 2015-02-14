@@ -102,6 +102,9 @@ $langList = $repoCache->langList(25);
                         </a>&nbsp;
                         <span id="repo-lang" class="label label-default"><%=lang%></span>
                     </div>
+                    <div class="panel-heading">
+                        <%=description%>
+                    </div>
                     <div id="repo-readme" class="panel-body">
                         <%=readme_html%>
                     </div>
