@@ -19,14 +19,9 @@ class RepoCache
     // Contains the last PDOStatement used (see RepoCache::prepareStatement())
     private $cachedPreparedStatement = null;
     
-    function __construct($host, $user, $pass, $dbName)
+    function __construct(PDO $db)
     {
-        try {
-            $dsn = 'mysql:host=' . $host . ';dbname=' . $dbName;
-            $this->db = new PDO($dsn, $user, $pass);
-        } catch (PDOException $e) {
-            throw new DatabaseConnectionException('Unable to connect to the database. Please check if config.php is properly set. Error : ' . $e->getMessage() . '(' . $e->getCode() . ')', 0);
-        }
+        $this->db = $db;
     }
     
     /* Returns an array of random repositories.

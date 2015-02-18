@@ -18,7 +18,7 @@ if (isset($_GET['limit']) && intval($_GET['limit']) > 0) {
 }
 
 
-$repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
+$repoCache = RepoCacheFactory::create($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 
 $repoList = $repoCache->randomRepo($limit, $language);
 

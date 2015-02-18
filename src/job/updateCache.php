@@ -3,7 +3,7 @@ include(dirname(__FILE__) . '/../autoload.php');
 
 $github = new GitHub($config['githubAPI']['OAuth']['id'], $config['githubAPI']['OAuth']['secret']);
 
-$repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
+$repoCache = RepoCacheFactory::create($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 
 try {
     // Fetching new GitHub repositories until it reaches the rate limit of the GitHub API

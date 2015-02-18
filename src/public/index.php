@@ -1,7 +1,7 @@
 <?php
 include(dirname(__FILE__) . '/../autoload.php');
 
-$repoCache = new RepoCache($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
+$repoCache = RepoCacheFactory::create($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 
 /* For the language filter.
  * Removes every programming language with less than 25 repositories using it as their main language
