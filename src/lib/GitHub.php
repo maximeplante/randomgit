@@ -1,11 +1,5 @@
 <?php
 
-class GitHubAPIException extends RuntimeException { }
-
-class GitHubAPIRateLimitException extends GitHubAPIException { }
-
-class GitHubAPINotFoundException extends RuntimeException { }
-
 class GitHub
 {
     // The GitHub API requires a user-agent
@@ -65,7 +59,7 @@ class GitHub
                 $readme_html = $this->getReadmeHTML($rawRepo->name, $rawRepo->owner->login);
                 $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->description, $rawRepo->owner->login, $rawRepo->language, $readme_html);
                 array_push($repoList, $repo);
-            } catch (GitHubAPINotFoundException $e) {
+            } catch (GitHub_NotFoundException $e) {
                 // Simply ignores the repository if no readme found
             }
         }
@@ -83,8 +77,8 @@ class GitHub
              array('Accept' => 'application/vnd.github.v3.html'),
              true
             );
-        } catch (GitHubAPINotFoundException $e) {
-            throw new GitHubAPINotFoundException('Cannot find the readme associated with a respository.', 0);
+        } catch (GitHub_NotFoundException $e) {
+            throw new GitHub_NotFoundException('Cannot find the readme associated with a respository.', 0);
         }
         
         return $response->body;
@@ -125,13 +119,13 @@ class GitHub
         }
         
         if ($response->status_code === 404) {
-            throw new GitHubAPINotFoundException('Cannot find the requested data.', 0);
+            throw new GitHub_NotFoundException('Cannot find the requested data.', 0);
         }
         
         if ($response->status_code === 403) {
-            throw new GitHubAPIRateLimitException('Rate limit of the GitHub API is exceeded', 0);
+            throw new GitHub_RateLimitException('Rate limit of the GitHub API is exceeded', 0);
         } else if(!$response->success) {
-            throw new GitHubAPIException('The GitHub API encountered an error. Raw response body : ' . $response->body, 0);
+            throw new GitHub_Exception('The GitHub API encountered an error. Raw response body : ' . $response->body, 0);
         }
         
         return $response;

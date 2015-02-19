@@ -13,7 +13,7 @@ try {
     for ($i = 0;  $i < 5; $i++) {
         $randomRepoList = array_merge($randomRepoList, $github->getRandomRepoList(true));
     }
-} catch (GitHubAPIRateLimitException $e) {
+} catch (GitHub_RateLimitException $e) {
     /* Handles gracefully the case when the script goes over the rate limit of
      * the GitHub API. Nothing to do here since it is expected.
      */
