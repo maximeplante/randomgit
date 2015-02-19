@@ -1,7 +1,5 @@
 <?php
 
-class QueryException extends RuntimeException { }
-
 // The repository cache is stored in the table 'repo_list' (see setup/schema.sql)
 class RepoCache
 {
@@ -48,7 +46,7 @@ class RepoCache
                 
                 // If the language does not exist, throw an exception
                 if ($query->fetch()[0] < 1) {
-                    throw new QueryException('The language specified (' . $language . ') does not exist in the database.');
+                    throw new RuntimeException('The language specified (' . $language . ') does not exist in the database.');
                 }
                 
                 $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
@@ -180,7 +178,7 @@ class RepoCache
     /* Executes a MYSQL query.
      * string $queryString : the query string
      * array $parameters : the input parameters of the query
-     * string $exceptionMsg : the message used if a DatabaseQueryException is thrown
+     * string $exceptionMsg : the message used if an exception is thrown
      * Returns the PDOStatement used for the query
      */
     private function executeQuery($queryString, $parameters, $exceptionMsg)
