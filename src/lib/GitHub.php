@@ -1,7 +1,5 @@
 <?php
 
-class ConnectionException extends RuntimeException { }
-
 class GitHubAPIException extends RuntimeException { }
 
 class GitHubAPIRateLimitException extends GitHubAPIException { }
@@ -123,7 +121,7 @@ class GitHub
             $response = Requests::get($fullUrl, $headers);
         
         } catch (Requests_Exception $e) {
-            throw new ConnectionException('Unable to reach the GitHub API', 0);
+            throw new RuntimeException('Unable to reach the GitHub API', 0, $e);
         }
         
         if ($response->status_code === 404) {

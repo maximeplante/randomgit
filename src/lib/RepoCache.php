@@ -1,11 +1,5 @@
 <?php
 
-class DatabaseException extends RuntimeException { }
-
-class DatabaseConnectionException extends DatabaseException { }
-
-class DatabaseQueryException extends DatabaseException { }
-
 class QueryException extends RuntimeException { }
 
 // The repository cache is stored in the table 'repo_list' (see setup/schema.sql)
@@ -65,7 +59,7 @@ class RepoCache
             }
             
             if (!$repoAssocArray = $query->fetch()) {
-                throw new DatabaseQueryException('Failed to fetch the data of the repository.', 0);
+                throw new RuntimeException('Failed to fetch the data of the repository.', 0);
             }
             
             array_push($repoList,
@@ -131,7 +125,7 @@ class RepoCache
          'Failed to count the number of entries in repo_list.'
         );
         if (!$result = $query->fetch()) {
-            throw new DatabaseQueryException('Failed fetch the number of entries in repo_list.');
+            throw new RuntimeException('Failed fetch the number of entries in repo_list.');
         }
         return $result['total'];
     }
@@ -194,7 +188,7 @@ class RepoCache
         $query = $this->prepareStatement($queryString);
         
         if ($query->execute($parameters) === false) {
-            throw new DatabaseQueryException($exceptionMsg, 0);
+            throw new RuntimeException($exceptionMsg, 0);
         }
         
         return $query;
