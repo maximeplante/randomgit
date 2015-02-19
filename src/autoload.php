@@ -6,6 +6,8 @@ function autoloader($class)
         'vendor'
     );
     
+    $class = str_replace('_', '/', $class);
+    
     foreach ($includePaths as $path) {
         $filePath = dirname(__FILE__) . '/' . $path . '/' . $class . '.php';
         
