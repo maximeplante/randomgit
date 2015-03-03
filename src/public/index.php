@@ -23,6 +23,7 @@ $langList = $repoCache->langList(25);
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/github.css">
         
         <!-- "Fork me on GitHub" ribbon : https://github.com/simonwhitaker/github-fork-ribbon-css -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
@@ -122,7 +123,7 @@ $langList = $repoCache->langList(25);
                     <div class="panel-heading">
                         <%=description%>
                     </div>
-                    <div id="repo-readme" class="panel-body">
+                    <div id="repo-readme" class="panel-body markdown-body">
                         <%=readme_html%>
                     </div>
                 </div>
