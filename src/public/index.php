@@ -24,6 +24,7 @@ $langList = $repoCache->langList(25);
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/github.css">
+        <link rel="stylesheet" type="text/css" href="css/footer.css">
         
         <!-- "Fork me on GitHub" ribbon : https://github.com/simonwhitaker/github-fork-ribbon-css -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
@@ -94,11 +95,36 @@ $langList = $repoCache->langList(25);
             <div id="readme-container">
                 <!-- The readme will be added here following the template below -->
             </div>
+            
+            <footer>
+                
+                <button id="footer-btn-about" class="footer-menu-elem" type="button" data-toggle="popover">About</button>
+                <div id="about-container" class="footer-menu-container">
+                    <p>Website created by <a href="https://github.com/Max840" target="_blank">Max840</a> and <a href="https://github.com/berseker59" target="_blank">Maxence Frenette</a>.</p>
+                    <a href="https://github.com/Max840/randomgit/" target="_blank"><strong>Official GitHub repo</strong></a>
+                </div>
+                
+                <button id="footer-btn-tech" class="footer-menu-elem" type="button" data-toggle="popover">Technology used</button>
+                <div id="tech-container" class="footer-menu-container">
+                    <p>This website relies on many open source technologies</p>
+                    <ul>
+                        <li><a href="http://php.net/" target="_blank">PHP</a></li>
+                        <li><a href="http://www.mysql.com/" target="_blank">MySQL</a></li>
+                        <li><a href="http://requests.ryanmccue.info/" target="_blank">Requests for PHP</a></li>
+                        <li><a href="https://developer.github.com/v3/" target="_blank">The GitHub public API</a></li>
+                        <li><a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a></li>
+                        <li><a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank">Simple JavaScript Templating</a></li>
+                        <li><a href="https://www.google.com/fonts/specimen/Open+Sans" target="_blank">Open Sans (Google Fonts)</a></li>
+                    </ul>
+                </div>
+                
+            </footer>
         </div>
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="js/libs/bootstrap.min.js"></script>
         <script src="js/libs/template.js"></script>
+        <script src="js/footer.js"></script>
         <script src="js/script.js"></script>
         <script>
             Randomgit.cache = <?php

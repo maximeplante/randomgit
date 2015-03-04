@@ -1,0 +1,33 @@
+footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-menu-elem {
+    font-family: "Open Sans";
+    border: solid 1px #0088FF;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    transition: background-color 200ms, color 200ms;
+    -o-transition: background-color 200ms, color 200ms;
+    -moz-transition: background-color 200ms, color 200ms;
+    -webkit-transition: background-color 200ms, color 200ms;
+}
+
+.footer-menu-elem:hover {
+    background-color: #0088FF;
+    color: white;
+}
+
+.footer-menu-container {
+    display: none;
+}
+
+.popover {
+    font-family: "Open Sans";
+    margin-bottom: 20px;
+}
