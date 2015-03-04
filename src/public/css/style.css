@@ -22,6 +22,18 @@ h3 {
     color: #00BBFF;
 }
 
+.form-control {
+    box-shadow: none;
+}
+
+#rand-btn {
+    font-family: "Open Sans";
+    border: solid 1px #0088FF;
+    border-radius: 4px;
+    background-color: #0088FF;
+    cursor: pointer;
+}
+
 .btn:enabled .on-btn-disabled {
     display: none;
 }
