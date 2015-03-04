@@ -26,12 +26,6 @@ $langList = $repoCache->langList(25);
         <link rel="stylesheet" type="text/css" href="css/github.css">
         <link rel="stylesheet" type="text/css" href="css/footer.css">
         
-        <!-- "Fork me on GitHub" ribbon : https://github.com/simonwhitaker/github-fork-ribbon-css -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
-        <!--[if lt IE 9]>
-            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css">
-        <![endif]-->
-        
         <!-- Google Analytics -->
         <script>
             // Prevents Google Analytics from counting the visits when the website is on a development server
@@ -49,12 +43,6 @@ $langList = $repoCache->langList(25);
         </script>
     </head>
     <body>
-        <!-- "Fork me on GitHub" ribbon -->
-        <div class="github-fork-ribbon-wrapper right visible-md-block visible-lg-block">
-            <div class="github-fork-ribbon">
-                <a href="//github.com/Max840/randomgit" target="_blank">Fork me on GitHub</a>
-            </div>
-        </div>
         
         <div class="container">
             <header id="intro">
