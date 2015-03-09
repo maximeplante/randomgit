@@ -103,6 +103,7 @@ $langList = $repoCache->langList(25);
                         <li><a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a></li>
                         <li><a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank">Simple JavaScript Templating</a></li>
                         <li><a href="https://www.google.com/fonts/specimen/Open+Sans" target="_blank">Open Sans (Google Fonts)</a></li>
+                        <li><a href="https://github.com/sindresorhus/github-markdown-css" target="_blank">GitHub Markdown CSS</a></li>
                     </ul>
                 </div>
                 
