@@ -23,7 +23,7 @@ $langList = $repoCache->langList(25);
         <link href='//fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/github.css">
+        <link rel="stylesheet" type="text/css" href="css/libs/github.css">
         <link rel="stylesheet" type="text/css" href="css/footer.css">
         
         <!-- Google Analytics -->
