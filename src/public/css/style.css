@@ -43,18 +43,19 @@ h3 {
 }
 
 #readme-container > * {
-    position: absolute;
     width: 770px;
 }
 
 #readme-container #current-repo {
     z-index: 0;
+    position: static;
 }
 
 #readme-container #next-repo {
     display: none;
     opacity: 0;
     z-index: 1;
+    position: absolute;
 }
 
 /* Override the text color for the readme */
