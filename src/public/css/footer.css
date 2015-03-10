@@ -12,9 +12,9 @@ footer {
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
-    transition: background-color 200ms, color 200ms;
-    -o-transition: background-color 200ms, color 200ms;
-    -moz-transition: background-color 200ms, color 200ms;
+            transition: background-color 200ms, color 200ms;
+         -o-transition: background-color 200ms, color 200ms;
+       -moz-transition: background-color 200ms, color 200ms;
     -webkit-transition: background-color 200ms, color 200ms;
 }
 
