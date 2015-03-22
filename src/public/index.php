@@ -104,6 +104,7 @@ $langList = $repoCache->langList(25);
                         <li><a href="http://ejohn.org/blog/javascript-micro-templating/" target="_blank">Simple JavaScript Templating</a></li>
                         <li><a href="https://www.google.com/fonts/specimen/Open+Sans" target="_blank">Open Sans (Google Fonts)</a></li>
                         <li><a href="https://github.com/sindresorhus/github-markdown-css" target="_blank">GitHub Markdown CSS</a></li>
+                        <li><a href="http://glyphicons.com" target="_blank">Glyphicons</a></li>
                     </ul>
                 </div>
                 
