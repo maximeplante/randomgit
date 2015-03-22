@@ -135,6 +135,7 @@ $langList = $repoCache->langList(25);
                             <span id="repo-name"><%=user%>&#47;<strong><%=name%></strong></span>
                         </a>&nbsp;
                         <span id="repo-lang" class="label label-default"><%=lang%></span>
+                        <span id="history-btn" class="glyphicon glyphicon-list pull-right"></span>
                     </div>
                     <div class="panel-heading">
                         <%=description%>
@@ -145,5 +146,18 @@ $langList = $repoCache->langList(25);
                 </div>
             </div>
         </script>
+        
+        <script type="text/html" id="history_tmpl">
+            <li class="list-group-item">
+                <a href="<%=url%>" id="repo-link" target="_blank">
+                    <span id="repo-name"><%=user%>&#47;<strong><%=name%></strong></span>
+                </a>&nbsp;
+                <span id="repo-lang" class="label label-default"><%=lang%></span>
+            </li>
+        </script>
+        
+        <div id="history-list" class="hidden">
+            <ul class="list-group"></ul>
+        </div>
     </body>
 </html>

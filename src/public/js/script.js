@@ -2,6 +2,9 @@ var Randomgit = {
     // Array of repositories currently loaded
     cache: [],
     
+    // Array of the previously viewed repositories
+    history: [],
+    
     // Current language filter
     lang: "all",
     
@@ -13,6 +16,18 @@ var Randomgit = {
         
         $("#rand-btn").click(this.showNextRepo.bind(this));
         $("#lang-select").change(this.changeLanguage.bind(this));
+        
+        var self = this;
+        $("body").popover({
+            title: 'History',
+            placement: 'left',
+            selector: '#history-btn',
+            container: '#current-repo',
+            html: 'true'
+        }).on('show.bs.popover', function() {
+            self.updateHistory();
+            $("#history-btn").attr('data-content', $("#history-list").html());
+        });
     },
     
     /**
@@ -77,10 +92,16 @@ var Randomgit = {
     showNextRepo: function() {
         var repo = this.cache.shift();
         
+        this.history.unshift(repo);
+        if (this.history.length > 10) {
+            this.history.pop();
+        }
+        
         if($("#next-repo").length === 0) {
             var template = tmpl("repo_tmpl", repo);
             $(template).appendTo("#readme-container");
             repo = this.cache.shift();
+            this.history.unshift(repo);
         }
         
         $("#intro").slideUp();
@@ -132,5 +153,24 @@ var Randomgit = {
         this.cache = [];
         $("#next-repo").remove();
         this.fetchRepos();
+    },
+    
+    /**
+     * Updates the html content of the history popover
+     */
+    updateHistory: function() {
+        var list = $("#history-list .list-group");
+        
+        list.html("");
+        
+        this.history.forEach(function(repo, index) {
+            /* Does not show the first element of the history because it
+             * was displayed yet (currently waiting in next-repo).
+             */
+            if (index > 0) {
+                var template = tmpl("history_tmpl", repo);
+                list.append(template);
+            }
+        });
     }
 }

@@ -59,6 +59,15 @@ h3 {
     position: absolute;
 }
 
+#history-btn {
+    cursor: pointer;
+}
+
+/* The history popover resizes dynamically to the width of the list */
+.popover {
+    max-width: 100%;
+}
+
 /* Override the text color for the readme */
 .markdown-body h1,
 .markdown-body h2,
