@@ -41,7 +41,9 @@ class GitHub
         return GitHub::searchRepo($query);
     }
     
-    // Returns an array of repositories matching the search query
+    /* Returns an array of repositories matching the search query
+     * Ignores repository without a readme and last updated more than a year ago
+     */
     public function searchRepo($query)
     {
         $response = $this->request('https://api.github.com/search/repositories',
@@ -54,11 +56,27 @@ class GitHub
         
         $repoList = array();
         
+        $now = new DateTime();
+        
         foreach ($rawRepoList->items as $rawRepo) {
             try {
-                $readme_html = $this->getReadmeHTML($rawRepo->name, $rawRepo->owner->login);
-                $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->description, $rawRepo->owner->login, $rawRepo->language, $readme_html);
-                array_push($repoList, $repo);
+                
+                $lastUpdated = DateTime::createFromFormat(DateTime::ISO8601, $rawRepo->updated_at);
+                // Computes the elapsed time since the last update fo the repo
+                $elapsedTime = $lastUpdated->diff($now);
+                
+                /* If the elapsed time since the last update is less than one
+                 * year ago, store the repo. Else, ignore it.
+                 */
+                if ($elapsedTime->y < 1) {
+                    
+                    $readme_html = $this->getReadmeHTML($rawRepo->name, $rawRepo->owner->login);
+                    
+                    $repo = new Repo($rawRepo->id, $rawRepo->name, $rawRepo->description, $rawRepo->owner->login, $rawRepo->language, $readme_html);
+                    array_push($repoList, $repo);
+                    
+                }
+                
             } catch (GitHub_NotFoundException $e) {
                 // Simply ignores the repository if no readme found
             }
