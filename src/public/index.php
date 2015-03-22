@@ -132,7 +132,7 @@ $langList = $repoCache->langList(25);
                     <div class="panel-heading">
                         <a href="<%=url%>" id="repo-link" target="_blank">
                             <span class="glyphicon glyphicon-link"></span>
-                            <strong id="repo-name"><%=name%></strong>
+                            <span id="repo-name"><%=user%>&#47;<strong><%=name%></strong></span>
                         </a>&nbsp;
                         <span id="repo-lang" class="label label-default"><%=lang%></span>
                     </div>
