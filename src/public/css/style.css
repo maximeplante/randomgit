@@ -49,6 +49,7 @@ h3 {
 #readme-container #current-repo {
     z-index: 0;
     position: static;
+    margin: auto;
 }
 
 #readme-container #next-repo {
