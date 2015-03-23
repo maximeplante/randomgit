@@ -24,13 +24,14 @@ var Randomgit = {
             selector: '#history-btn',
             container: '#current-repo',
             html: 'true'
-        }).on('show.bs.popover', function() {
-            self.updateHistory();
-            $("#history-btn").attr('data-content', $("#history-list").html());
         }).tooltip({
             title: 'History of previously seen repositories',
             selector: '#history-btn',
             placement: 'top'
+        }).on('show.bs.popover', function() {
+            self.updateHistory();
+            $("#history-btn").tooltip("hide");
+            $("#history-btn").attr('data-content', $("#history-list").html());
         });
     },
     
