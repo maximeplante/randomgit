@@ -48,7 +48,7 @@ set_exception_handler(function($exception) use (&$config) {
     if ($config['debug']) {
         throw $exception;
     } else {
-        // Logs error only in release mode
+        // Logs errors only in release mode
         error_log($exception);
         echo 'Something wrong happened, try refreshing the page.';
     }
