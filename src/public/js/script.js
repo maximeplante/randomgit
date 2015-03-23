@@ -27,6 +27,10 @@ var Randomgit = {
         }).on('show.bs.popover', function() {
             self.updateHistory();
             $("#history-btn").attr('data-content', $("#history-list").html());
+        }).tooltip({
+            title: 'History of previously seen repositories',
+            selector: '#history-btn',
+            placement: 'top'
         });
     },
     
