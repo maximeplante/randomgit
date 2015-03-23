@@ -173,7 +173,7 @@ var Randomgit = {
              * was displayed yet (currently waiting in next-repo).
              */
             if (index > 0) {
-                var template = tmpl("history_tmpl", repo);
+                var template = tmpl("history_item_tmpl", repo);
                 list.append(template);
             }
         });

@@ -147,7 +147,7 @@ $langList = $repoCache->langList(25);
             </div>
         </script>
         
-        <script type="text/html" id="history_tmpl">
+        <script type="text/html" id="history_item_tmpl">
             <li class="list-group-item">
                 <a href="<%=url%>" target="_blank">
                     <span id="repo-name"><%=user%>&#47;<strong><%=name%></strong></span>
