@@ -63,6 +63,13 @@ h3 {
     cursor: pointer;
 }
 
+/* Removes the effects added by the browser around the buttons in the
+ * footer when on focus.
+ */
+.footer-menu-elem:focus {
+    outline: none;
+}
+
 /* The history popover resizes dynamically to the width of the list */
 .popover {
     max-width: 100%;
