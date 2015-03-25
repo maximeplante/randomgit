@@ -86,13 +86,13 @@ $langList = $repoCache->langList(25);
             
             <footer>
                 
-                <button id="footer-btn-about" class="footer-menu-elem" type="button" data-toggle="popover">About</button>
+                <button class="footer-menu-elem" type="button" data-popover="about-container" data-toggle="popover">About</button>
                 <div id="about-container" class="footer-menu-container">
                     <p>Website created by <a href="https://github.com/Max840" target="_blank">Max840</a> and <a href="https://github.com/berseker59" target="_blank">Maxence Frenette</a>.</p>
                     <a href="https://github.com/Max840/randomgit/" target="_blank"><strong>Official GitHub repo</strong></a>
                 </div>
                 
-                <button id="footer-btn-tech" class="footer-menu-elem" type="button" data-toggle="popover">Technology used</button>
+                <button class="footer-menu-elem" type="button" data-popover="tech-container" data-toggle="popover">Technology used</button>
                 <div id="tech-container" class="footer-menu-container">
                     <p>This website relies on many open source technologies</p>
                     <ul>
