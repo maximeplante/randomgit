@@ -4,7 +4,7 @@
 class RepoCache
 {
     // Maximum number of repositories in the cache
-    const MAX_REPOCACHE_SIZE = 100000;
+    const MAX_REPOCACHE_SIZE = 4000;
     
     private $db;
     
@@ -24,44 +24,39 @@ class RepoCache
     {
         $repoList = array();
         
-        for ($i = 0; $i < $count; $i++) {
-            // If no language specified, use the optimized randomization
-            if ($language === null) {
-                
-                $randomRank = mt_rand(1, $this->count());
-                
-                $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank=?',
-                 array($randomRank),
-                 'Unable to get a random repository from the cache'
-                );
-                
-            // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
-            } else {
-                
-                // Check if the language exists in the database
-                $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
-                 array($language),
-                 'Unable to count the number of occurrences of a language.'
-                );
-                
-                // If the language does not exist, throw an exception
-                if ($query->fetch()[0] < 1) {
-                    throw new RuntimeException('The language specified (' . $language . ') does not exist in the database.');
-                }
-                
-                $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT 1',
-                 array($language),
-                 'Unable to get a random repository from the cache using a language filter.'
-                );
-                
+        // If no language specified, use the optimized randomization
+        if ($language === null) {
+            
+            $randomRank = mt_rand(1, $this->count());
+            
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank >= ? AND rank < (?+?)',
+             array($randomRank, $randomRank, $count),
+             'Unable to get a random repository from the cache'
+            );
+            
+        // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
+        } else {
+            
+            // Check if the language exists in the database
+            $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
+             array($language),
+             'Unable to count the number of occurrences of a language.'
+            );
+            
+            // If the language does not exist, throw an exception
+            if ($query->fetch()[0] < 1) {
+                throw new RuntimeException('The language specified (' . $language . ') does not exist in the database.');
             }
             
-            if (!$repoAssocArray = $query->fetch()) {
-                throw new RuntimeException('Failed to fetch the data of the repository.', 0);
-            }
-            
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT ' . intval($count),
+             array($language),
+             'Unable to get a random repository from the cache using a language filter.'
+            );
+        }
+        
+        while ($repoAssocArray = $query->fetch()) {
             array_push($repoList,
-              new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['description'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html'])
+                new Repo($repoAssocArray['id'], $repoAssocArray['name'], $repoAssocArray['description'], $repoAssocArray['user'], $repoAssocArray['lang'], $repoAssocArray['readme_html'])
             );
         }
         
