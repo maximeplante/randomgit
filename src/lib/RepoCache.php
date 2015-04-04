@@ -49,7 +49,7 @@ class RepoCache
             $selectedRanks = array_rand($availableRanks, $count);
             
             // array_rand does not return an array if there's only one value specified -_-'
-            if (count == 1) {
+            if ($count == 1) {
                 $selectedRanks = [$selectedRanks];
             }
             
