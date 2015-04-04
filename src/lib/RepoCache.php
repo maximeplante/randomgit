@@ -24,7 +24,6 @@ class RepoCache
     {
         $repoList = array();
         
-        // If no language specified, use the optimized randomization
         if ($language === null) {
             
             $randomRank = mt_rand(1, $this->count());
@@ -33,24 +32,37 @@ class RepoCache
              array($randomRank, $randomRank, $count),
              'Unable to get a random repository from the cache'
             );
-            
-        // If a language is specified, use 'ORDER BY RAND()' since the list of repositories is smaller
+        
         } else {
             
-            // Check if the language exists in the database
-            $query = $query = $this->executeQuery('SELECT COUNT(*) FROM repo_list WHERE lang=?',
+            // Get the rank of every repo associated with the language
+            $query = $this->executeQuery('SELECT rank FROM repo_list WHERE lang=?',
              array($language),
-             'Unable to count the number of occurrences of a language.'
+             'Unable to get the ranks of the repositories associated with a certain language.'
             );
             
-            // If the language does not exist, throw an exception
-            if ($query->fetch()[0] < 1) {
-                throw new RuntimeException('The language specified (' . $language . ') does not exist in the database.');
+            $availableRanks = array();
+            while ($result = $query->fetch()) {
+                array_push($availableRanks, $result['rank']);
             }
             
-            $query = $this->executeQuery('SELECT * FROM repo_list WHERE lang=? ORDER BY RAND() LIMIT ' . intval($count),
-             array($language),
-             'Unable to get a random repository from the cache using a language filter.'
+            $selectedRanks = array_rand($availableRanks, $count);
+            
+            // array_rand does not return an array if there's only one value specified -_-'
+            if (count == 1) {
+                $selectedRanks = [$selectedRanks];
+            }
+            
+            // Building the query string used in the "IN (...)" SQL statement
+            $queryString = '';
+            foreach ($selectedRanks as $rank) {
+                $queryString .= intval($rank) . ',';
+            }
+            $queryString = rtrim($queryString, ',');
+            
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank IN (' . $queryString . ')',
+             array(),
+             'Failed to fetch the randomly select repositories associated with a language.'
             );
         }
         
