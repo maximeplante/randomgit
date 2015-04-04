@@ -128,9 +128,19 @@ class RepoCache
      */
     public function giveRanks()
     {
+        $this->executeQuery('ALTER TABLE repo_list DROP PRIMARY KEY;',
+         array(),
+         'Failed to remove the primary key'
+        );
+        
         $this->executeQuery('SET @i = 0; UPDATE repo_list SET rank=(@i:=@i+1);',
          array(),
          'Failed to set a rank to the element of repo_list.'
+        );
+        
+        $this->executeQuery('ALTER TABLE repo_list ADD PRIMARY KEY (rank)',
+         array(),
+         'Failed to remove the primary key'
         );
     }
     
