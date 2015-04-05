@@ -77,14 +77,22 @@ class RepoCache
     
     public function storeRepo(Repo $repo)
     {
-        $this->executeQuery('INSERT INTO repo_list (id, name, description, user, lang, readme_html) VALUES (?, ?, ?, ?, ?, ?)',
+        $query = $this->executeQuery('SELECT MAX(rank) FROM repo_list;',
+         array(),
+         'Failed to get the highest rank in repo_list.'
+        );
+        
+        $max = $query->fetch()[0];
+        
+        $this->executeQuery('INSERT INTO repo_list (id, name, description, user, lang, readme_html, rank) VALUES (?, ?, ?, ?, ?, ?, ?)',
          array(
              $repo->getId(),
              $repo->getName(),
              $repo->getDescription(),
              $repo->getUser(),
              $repo->getLang(),
-             $repo->getReadmeHTML()
+             $repo->getReadmeHTML(),
+             $max + 1
          ),
          'Failed to save a repository to the cache'
         );
@@ -150,7 +158,7 @@ class RepoCache
          'Failed to set a rank to the element of repo_list.'
         );
         
-        $this->executeQuery('ALTER TABLE repo_list ADD PRIMARY KEY (rank)',
+        $this->executeQuery('ALTER TABLE repo_list ADD PRIMARY KEY (rank);',
          array(),
          'Failed to remove the primary key'
         );
