@@ -22,22 +22,22 @@ try {
 // Locks the database to prevent random.php from accessing the repository cache while the ranks are not assigned yet
 $repoCache->lock();
 
-// Stores the repositories in the cache
-foreach ($randomRepoList as $repo) {
-    // Do not add duplicates
-    if (!$repoCache->isCached($repo)) {
-        $repoCache->storeRepo($repo);
-    }
-}
+/* Does not check for duplicates since there's almost no chance
+ * that a repository is randomly selected more than one time
+ */
+$repoCache->storeRepoList($randomRepoList);
+
+// Freeing memory
+unset($randomRepoList);
 
 // Randomly removes repositories from the cache to keep their count under RepoCache::MAX_REPOCACHE_SIZE
 $repoOverflowCount = $repoCache->count() - RepoCache::MAX_REPOCACHE_SIZE;
 if ($repoOverflowCount > 0) {
     // Deletes more than just the overflow to prevent repositories from staying for ever in the cache
     $repoCache->randomRemove($repoOverflowCount + ceil(RepoCache::MAX_REPOCACHE_SIZE / 4));
+    
+    // Assigns a rank to every repository (used in RepoCache::randomRepo())
+    $repoCache->giveRanks();
 }
-
-// Assigns a rank to every repository (used in RepoCache::randomRepo())
-$repoCache->giveRanks();
 
 exit('Success');

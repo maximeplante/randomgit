@@ -98,6 +98,31 @@ class RepoCache
         );
     }
     
+    public function storeRepoList(array $repoList)
+    {
+        $query = $this->executeQuery('SELECT MAX(rank) FROM repo_list;',
+         array(),
+         'Failed to get the highest rank in repo_list.'
+        );
+        
+        $max = $query->fetch()[0];
+        
+        foreach ($repoList as $repo) {
+            $this->executeQuery('INSERT INTO repo_list (id, name, description, user, lang, readme_html, rank) VALUES (?, ?, ?, ?, ?, ?, ?)',
+             array(
+                 $repo->getId(),
+                 $repo->getName(),
+                 $repo->getDescription(),
+                 $repo->getUser(),
+                 $repo->getLang(),
+                 $repo->getReadmeHTML(),
+                 ++$max,
+             ),
+             'Failed to save a repository to the cache'
+            );
+        }
+    }
+    
     // Empties the respository cache
     public function clear()
     {
