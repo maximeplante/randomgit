@@ -50,7 +50,7 @@ class RepoCache
             
             // array_rand does not return an array if there's only one value specified -_-'
             if ($count === 1) {
-                $selectedRankIndexes = [$selectedRankIndexes];
+                $selectedRankIndexes = array($selectedRankIndexes);
             }
             
             // Building the query string used in the "IN (...)" SQL statement
