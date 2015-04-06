@@ -4,7 +4,7 @@
 class RepoCache
 {
     // Maximum number of repositories in the cache
-    const MAX_REPOCACHE_SIZE = 4000;
+    const MAX_REPOCACHE_SIZE = 10000;
     
     private $db;
     
@@ -46,17 +46,17 @@ class RepoCache
                 array_push($availableRanks, $result['rank']);
             }
             
-            $selectedRanks = array_rand($availableRanks, $count);
+            $selectedRankIndexes = array_rand($availableRanks, $count);
             
             // array_rand does not return an array if there's only one value specified -_-'
-            if ($count == 1) {
-                $selectedRanks = [$selectedRanks];
+            if ($count === 1) {
+                $selectedRankIndexes = [$selectedRankIndexes];
             }
             
             // Building the query string used in the "IN (...)" SQL statement
             $queryString = '';
-            foreach ($selectedRanks as $rank) {
-                $queryString .= intval($rank) . ',';
+            foreach ($selectedRankIndexes as $rankIndex) {
+                $queryString .= intval($availableRanks[$rankIndex]) . ',';
             }
             $queryString = rtrim($queryString, ',');
             
