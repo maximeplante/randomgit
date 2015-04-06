@@ -4,10 +4,10 @@ include(dirname(__FILE__) . '/../autoload.php');
 $repoCache = RepoCacheFactory::create($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['dbName']);
 
 /* For the language filter.
- * Removes every programming language with less than 25 repositories using it as their main language
+ * Removes every programming language with less than 50 repositories using it as their main language
  * to prevent random.php from always returning the same repositories.
  */
-$langList = $repoCache->langList(25);
+$langList = $repoCache->langList(50);
 ?>
 
 <!DOCTYPE html>
