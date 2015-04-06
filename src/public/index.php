@@ -13,7 +13,7 @@ $langList = $repoCache->langList(50);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RandomGit.com - Discover GitHub repositories</title>
+        <title>RandomGit.com - Discover random GitHub repositories</title>
         
         <meta name="description" content="Explore random GitHub repositories">
         
@@ -47,7 +47,7 @@ $langList = $repoCache->langList(50);
         <div class="container">
             <header id="intro">
                 <h1>Random<span class="blueText">Git</span>.com</h1>
-                <h3 class="description">Explore random GitHub repositories by clicking on the blue button!</h3>
+                <h3 class="description">Discover random GitHub repositories by clicking on the blue button!</h3>
             </header>
             
             <br>
