@@ -146,7 +146,7 @@ var Randomgit = {
      * Re-enables the Randomize! button
      */
     enableRandBtn: function() {
-        $("#rand-btn").prop("disabled", false);
+        $("#rand-btn").prop("disabled", false).focus();
     },
     
     /**
