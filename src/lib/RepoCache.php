@@ -26,11 +26,24 @@ class RepoCache
         
         if ($language === null) {
             
-            $randomRank = mt_rand(1, $this->count());
+            $max = $this->count();
             
-            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank >= ? AND rank < (?+?)',
-             array($randomRank, $randomRank, $count),
-             'Unable to get a random repository from the cache'
+            $randomRanks = array();
+            
+            for ($i = 0; $i < $count; $i++) {
+                array_push($randomRanks, mt_rand(0, $max));
+            }
+            
+            // Building the query string used in the "IN (...)" SQL statement
+            $queryString = '';
+            foreach ($randomRanks as $rank) {
+                $queryString .= intval($rank) . ',';
+            }
+            $queryString = rtrim($queryString, ',');
+            
+            $query = $this->executeQuery('SELECT * FROM repo_list WHERE rank IN (' . $queryString . ')',
+             array(),
+             'Unable to get random repositories from the cache'
             );
         
         } else {
