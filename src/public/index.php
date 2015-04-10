@@ -89,7 +89,7 @@ $langList = $repoCache->langList(50);
                 <button class="footer-menu-elem" type="button" data-popover="about-container" data-toggle="popover">About</button>
                 <div id="about-container" class="footer-menu-container">
                     <p>Website created by <a href="https://github.com/Max840" target="_blank">Maxime Plante</a> and <a href="https://github.com/berseker59" target="_blank">Maxence Frenette</a>.</p>
-                    <a href="https://github.com/Max840/randomgit/" target="_blank"><strong>Official GitHub repo</strong></a>
+                    <a href="https://github.com/Max840/randomgit/" target="_blank"><strong>Official GitHub repository</strong></a>
                 </div>
                 
                 <button class="footer-menu-elem" type="button" data-popover="tech-container" data-toggle="popover">Technology used</button>
