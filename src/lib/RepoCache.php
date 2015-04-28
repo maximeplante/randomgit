@@ -3,9 +3,6 @@
 // The repository cache is stored in the table 'repo_list' (see setup/schema.sql)
 class RepoCache
 {
-    // Maximum number of repositories in the cache
-    const MAX_REPOCACHE_SIZE = 10000;
-    
     private $db;
     
     // Contains the last PDOStatement used (see RepoCache::prepareStatement())

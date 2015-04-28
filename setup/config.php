@@ -27,5 +27,14 @@ return array(
             'id' => '',
             'secret' => ''
         )
-    )
+    ),
+    
+    'repoCache' => array(
+        // Maximum number of repositories in the cache
+        'maxSize' => 10000,
+        /* Does not list languages with less than a [minLang] number of
+         * repositories using this language as their main language.
+         */
+        'minLang' => 50,
+    ),
 );

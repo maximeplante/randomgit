@@ -30,11 +30,11 @@ $repoCache->storeRepoList($randomRepoList);
 // Freeing memory
 unset($randomRepoList);
 
-// Randomly removes repositories from the cache to keep their count under RepoCache::MAX_REPOCACHE_SIZE
-$repoOverflowCount = $repoCache->count() - RepoCache::MAX_REPOCACHE_SIZE;
+// Randomly removes repositories from the cache to keep their count under the maximum size of the repository cache
+$repoOverflowCount = $repoCache->count() - $config['repoCache']['maxSize'];
 if ($repoOverflowCount > 0) {
     // Deletes more than just the overflow to prevent repositories from staying for ever in the cache
-    $repoCache->randomRemove($repoOverflowCount + ceil(RepoCache::MAX_REPOCACHE_SIZE / 4));
+    $repoCache->randomRemove($repoOverflowCount + ceil($config['repoCache']['maxSize'] / 4));
     
     // Assigns a rank to every repository (used in RepoCache::randomRepo())
     $repoCache->giveRanks();
