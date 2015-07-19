@@ -14,6 +14,8 @@ var Randomgit = {
     load: function() {
         this.fetchRepos();
         
+        $("#lang-select").val("all");
+        
         $("#rand-btn").click(this.showNextRepo.bind(this));
         $("#lang-select").change(this.changeLanguage.bind(this));
         
