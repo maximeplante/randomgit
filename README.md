@@ -3,6 +3,8 @@ RandomGit.com
 
 [RandomGit.com](http://randomgit.com) - A website to discover new GitHub repositories
 
+NOTE: The site is down because of the lack of traffic. I'm still keeping the code here for future reference or for somebody  to pickup the project.
+
 ## How to contribute
 I need your help to make a better RandomGit.com!
 
